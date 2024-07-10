@@ -1,0 +1,268 @@
+{
+  "projectName": "projet1.angular",
+  "decription": "Fichier de configuration de Taf",
+  "taf_base_url": "http:\/\/localhost\/UAHB\/GESTION_PERSONNEL\/back\/",
+  "les_modules": [
+  {
+  "module": "home",
+  "les_tables": [
+  {
+  "table": "demande",
+  "description": [
+  "id_demande",
+  "type",
+  "etat",
+  "demandeur"
+  ],
+  "table_descriptions": {
+  "table_name": "demande",
+  "cle_primaire": {
+  "Field": "id_demande",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "demande",
+  "utilisateur"
+  ],
+  "les_referenced_table": [
+  "utilisateur"
+  ],
+  "les_colonnes": [
+  {
+  "Field": "id_demande",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "type",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "etat",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "demandeur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "MUL",
+  "Default": null,
+  "Extra": "",
+  "explications": "cl\u00e9 \u00e9trang\u00e8re li\u00e9e \u00e0 la colonne id_utilisateur de la table utilisateur",
+  "table": {
+  "TABLE_NAME": "demande",
+  "COLUMN_NAME": "demandeur",
+  "REFERENCED_TABLE_NAME": "utilisateur",
+  "REFERENCED_COLUMN_NAME": "id_utilisateur"
+  },
+  "table_existant": false,
+  "referenced_table": {
+  "table_name": "utilisateur",
+  "cle_primaire": {
+  "Field": "id_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "demande",
+  "utilisateur"
+  ],
+  "les_referenced_table": [],
+  "les_colonnes": [
+  {
+  "Field": "id_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "prenom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "email",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "statut",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "password",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  }
+  ]
+  }
+  }
+  ]
+  },
+  "les_types": [
+  "add",
+  "edit",
+  "list",
+  "details"
+  ]
+  },
+  {
+  "table": "utilisateur",
+  "description": [
+  "id_utilisateur",
+  "nom",
+  "prenom",
+  "email",
+  "statut",
+  "password"
+  ],
+  "table_descriptions": {
+  "table_name": "utilisateur",
+  "cle_primaire": {
+  "Field": "id_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "utilisateur"
+  ],
+  "les_referenced_table": [],
+  "les_colonnes": [
+  {
+  "Field": "id_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "prenom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "email",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "statut",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "password",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  }
+  ]
+  },
+  "les_types": [
+  "add",
+  "edit",
+  "list",
+  "details"
+  ]
+  }
+  ]
+  },
+  {
+  "module": "public",
+  "les_tables": [
+  {
+  "table": "login",
+  "description": [
+  "login",
+  "pwd"
+  ],
+  "les_types": [
+  "login"
+  ]
+  }
+  ]
+  }
+  ]
+  }

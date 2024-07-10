@@ -1,0 +1,43 @@
+
+<form  [formGroup]="reactiveForm_edit_utilisateur " (ngSubmit)="onSubmit_edit_utilisateur ()" #form_edit_utilisateur ="ngForm" class="row">
+  
+<!-- nom field avec un control de validite -->
+          <div class="form-group col-sm-6">
+          <label >nom</label>
+          <input class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"/>
+          <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+          <div *ngIf="f.nom.errors.required"> nom est obligatoire </div>
+          </div>
+          </div>  
+<!-- prenom field avec un control de validite -->
+          <div class="form-group col-sm-6">
+          <label >prenom</label>
+          <input class="form-control" type="text"  formControlName="prenom"  placeholder="prenom"  [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }"/>
+          <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+          <div *ngIf="f.prenom.errors.required"> prenom est obligatoire </div>
+          </div>
+          </div>  
+<!-- email field avec un control de validite -->
+          <div class="form-group col-sm-6">
+          <label >email</label>
+          <input class="form-control" type="text"  formControlName="email"  placeholder="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required"> email est obligatoire </div>
+          </div>
+          </div>  
+<!-- statut field avec un control de validite -->
+          <div class="form-group col-sm-6">
+          <label >statut</label>
+          <input class="form-control" type="text"  formControlName="statut"  placeholder="statut"  [ngClass]="{ 'is-invalid': submitted && f.statut.errors }"/>
+          <div *ngIf="submitted && f.statut.errors" class="invalid-feedback">
+          <div *ngIf="f.statut.errors.required"> statut est obligatoire </div>
+          </div>
+          </div>  
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_utilisateur "
+        (click)="form_edit_utilisateur .ngSubmit.emit()">{{loading_edit_utilisateur ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_utilisateur ()">Vider</button>
+</div>

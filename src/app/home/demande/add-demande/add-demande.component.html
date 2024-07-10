@@ -1,0 +1,38 @@
+
+<form  [formGroup]="reactiveForm_add_demande " (ngSubmit)="onSubmit_add_demande ()" #form_add_demande ="ngForm" class="row">
+
+<!-- type field avec un control de validite -->
+          <div class="form-group col-sm-6">
+          <label >type</label>
+          <input class="form-control" type="text"  formControlName="type"  placeholder="type"  [ngClass]="{ 'is-invalid': submitted && f.type.errors }"/>
+          <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+          <div *ngIf="f.type.errors.required"> type est obligatoire </div>
+          </div>
+          </div>
+<!-- etat field avec un control de validite -->
+          <!-- <div class="form-group col-sm-6">
+          <label >etat</label>
+          <input class="form-control" type="text"  formControlName="etat"  placeholder="etat"  [ngClass]="{ 'is-invalid': submitted && f.etat.errors }"/>
+          <div *ngIf="submitted && f.etat.errors" class="invalid-feedback">
+          <div *ngIf="f.etat.errors.required"> etat est obligatoire </div>
+          </div>
+          </div>   -->
+<!-- champs demandeur avec un control de validite : clé étrangère liée à la colonne demandeur de la table utilisateur -->
+        <!-- <div class="form-group col-sm-6">
+          <label >utilisateur</label>
+          <select [ngClass]="{ 'is-invalid': submitted && f.demandeur.errors }" class="form-select" formControlName="demandeur">
+            <option value="">Sélectionnez un(e) utilisateur</option>
+            <option [value]="one_utilisateur.id_utilisateur" *ngFor="let one_utilisateur of form_details.les_utilisateurs">{{"utilisateur N°"+one_utilisateur.id_utilisateur}}</option>
+          </select>
+          <div *ngIf="submitted && f.demandeur.errors" class="invalid-feedback">
+            <div *ngIf="f.demandeur.errors.required">ce champ est obligatoire</div>
+          </div>
+        </div> -->
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_demande "
+        (click)="form_add_demande .ngSubmit.emit()">{{loading_add_demande ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_add_demande ()">Vider</button>
+</div>

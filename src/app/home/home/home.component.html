@@ -1,0 +1,59 @@
+<div class="d-flex align-items-center justify-content-between">
+  <!-- <div class="fs-1">
+    Module home
+  </div> -->
+  <div class="d-flex">
+    <!-- <div class="dropdown">
+      <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+      data-bs-toggle="dropdown">{{menu.titre}}</button>
+      <div class="dropdown-menu">
+        <a routerLinkActive="bg-primary text-white"  *ngFor="let one_menu of menu.items" [routerLink]="[one_menu.path]" class="dropdown-item" >
+          {{one_menu.libelle}}
+        </a>
+      </div>
+    </div>
+  </div> -->
+  <div id="" class="menu">
+    @if (user.statut == 'admin') {
+  <ul>
+    @for (menu of menu_chef.items; track $index) {
+    <i class='bx bx-log-out-circle'></i>
+    <!-- Module home -->
+    <li class="nav-item" routerLinkActive="bg-success text-white" [routerLink]="[menu.path]"><a
+        class="nav-llink" routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
+        <i class={{menu.icon}}></i>
+        {{menu.libelle}}
+      </a></li>
+    }
+  </ul>
+
+}@else if (user.statut == 'agent') {
+  <!-- <img src="../../../assets/_f669d9cd-66f7-4297-8bff-f5e47e786f0f.jpeg" alt=""> -->
+  <ul>
+    @for (menu of menu_agent.items; track $index) {
+      <i class='bx bx-log-out-circle'></i>
+      <!-- Module home -->
+      <li class="nav-item" routerLinkActive="bg-success text-white" [routerLink]="[menu.path]"><a
+        class="nav-llink" routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
+        <i class={{menu.icon}}></i>
+        {{menu.libelle}}
+      </a></li>
+    }
+  </ul>
+
+}
+<ul>
+  <li routerLinkActive="bg-primary text-white" (click)="deconnexion()">
+      <a routerLinkActive="bg-primary text-white" (click)="deconnexion()" data-bs-dismiss="modal">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Deconnexion
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="container">
+  <img src="../../../assets/image/logosamahampate.png" alt="">
+  <router-outlet></router-outlet>
+</div>
+
+</div>
