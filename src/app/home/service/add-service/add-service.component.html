@@ -1,0 +1,19 @@
+
+<form  [formGroup]="reactiveForm_add_service " (ngSubmit)="onSubmit_add_service ()" #form_add_service ="ngForm" class="row">
+  
+<!-- nom field avec un control de validite -->
+          <div class="form-group col-sm-6">
+          <label >nom</label>
+          <input class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"/>
+          <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+          <div *ngIf="f.nom.errors.required"> nom est obligatoire </div>
+          </div>
+          </div>  
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_service "
+        (click)="form_add_service .ngSubmit.emit()">{{loading_add_service ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_add_service ()">Vider</button>
+</div>

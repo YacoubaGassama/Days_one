@@ -1,0 +1,48 @@
+
+<form  [formGroup]="reactiveForm_add_role " (ngSubmit)="onSubmit_add_role ()" #form_add_role ="ngForm" class="row">
+
+<!-- nom field avec un control de validite -->
+          <div class="form-group col-sm-6">
+          <label >nom</label>
+          <select class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+            <option value=""></option>
+            <option value="create">create</option>
+            <option value="read">read</option>
+            <option value="Update">Update</option>
+            <option value="delete">delete</option>
+          </select>
+          <!-- <input class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"/> -->
+          <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+          <div *ngIf="f.nom.errors.required"> nom est obligatoire </div>
+          </div>
+          </div>
+<!-- champs id_utilisateur avec un control de validite : clé étrangère liée à la colonne id_utilisateur de la table utilisateur -->
+        <div class="form-group col-sm-6">
+          <label >utilisateur</label>
+          <select [ngClass]="{ 'is-invalid': submitted && f.id_utilisateur.errors }" class="form-select" formControlName="id_utilisateur">
+            <option value="">Sélectionnez un(e) utilisateur</option>
+            <option [value]="one_utilisateur.id_utilisateur" *ngFor="let one_utilisateur of form_details.les_utilisateurs">{{one_utilisateur.nom}}</option>
+          </select>
+          <div *ngIf="submitted && f.id_utilisateur.errors" class="invalid-feedback">
+            <div *ngIf="f.id_utilisateur.errors.required">ce champ est obligatoire</div>
+          </div>
+        </div>
+<!-- champs id_service avec un control de validite : clé étrangère liée à la colonne id_service de la table service -->
+        <div class="form-group col-sm-6">
+          <label >service</label>
+          <select [ngClass]="{ 'is-invalid': submitted && f.id_service.errors }" class="form-select" formControlName="id_service">
+            <option value="">Sélectionnez un(e) service</option>
+            <option [value]="one_service.id_service" *ngFor="let one_service of form_details.les_services">{{one_service.nom}}</option>
+          </select>
+          <div *ngIf="submitted && f.id_service.errors" class="invalid-feedback">
+            <div *ngIf="f.id_service.errors.required">ce champ est obligatoire</div>
+          </div>
+        </div>
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_role "
+        (click)="form_add_role .ngSubmit.emit()">{{loading_add_role ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_add_role ()">Vider</button>
+</div>

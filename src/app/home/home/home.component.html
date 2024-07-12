@@ -13,47 +13,173 @@
       </div>
     </div>
   </div> -->
-  <div id="" class="menu">
-    @if (user.statut == 'admin') {
-  <ul>
-    @for (menu of menu_chef.items; track $index) {
-    <i class='bx bx-log-out-circle'></i>
-    <!-- Module home -->
-    <li class="nav-item" routerLinkActive="bg-success text-white" [routerLink]="[menu.path]"><a
-        class="nav-llink" routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
-        <i class={{menu.icon}}></i>
-        {{menu.libelle}}
-      </a></li>
-    }
-  </ul>
+    <div id="" class="menu">
+      <!-- <img src="../../../assets/image/images.jpeg" class="img" alt=""> -->
+      <!-- <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="text-success">Mon Application</h3>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-item"><a href="#">Accueil</a></li>
+            <li class="sidebar-item">
+                <a href="#">Services</a>
+                <ul>
+                  @for (menu of menu_chef.items; track $index) {
 
-}@else if (user.statut == 'agent') {
-  <!-- <img src="../../../assets/_f669d9cd-66f7-4297-8bff-f5e47e786f0f.jpeg" alt=""> -->
-  <ul>
+                  <li class="nav-item" routerLinkActive="bg-success text-white" [routerLink]="[menu.path]"><a class="nav-llink"
+                      routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
+                      <i class={{menu.icon}}></i>
+                      {{menu.libelle}}
+                    </a></li>
+                  }
+                </ul>
+            </li>
+            <li class="sidebar-item"><a href="#">À propos</a></li>
+            <li class="sidebar-item"><a href="#">Contact</a></li>
+        </ul>
+    </div> -->
+      @if (user.statut == 'admin') {
+      <div class="sidebar">
+        <div class="sidebar-header">
+        <i class="bi bi-person-circle icon-extra-large"></i>
+
+          <h3>{{user.nom}}</h3>
+      </div>
+
+          <ul class="sidebar-menu">
+            @for (menu of menu_chef.items; track $index) {
+              @if (menu.libelle == 'service') {
+
+                <li class="sidebar-item" routerLinkActive="bg-success text-white" (click)="toggleDropdown($event)">
+                  <h5>{{menu.libelle}}</h5>
+                  <!-- <a class="nav-llink"
+                  routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
+                  <i class={{menu.icon}}></i>
+                  {{menu.libelle}}
+                </a> -->
+                <ul class="sidebar-dropdown" [class.active]="isDropdownOpen">
+                  @for (one_service of les_services; track $index) {
+                    <li class="sidebar-dropdown-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/'+path[$index]]" (click)="toggleDropdown($event)">
+                      <a [routerLink]="['/home/'+path[$index]]" routerLinkActive="bg-success text-white">
+                        {{one_service.nom}}
+                      </a>
+                    </li>
+                  }
+
+                </ul>
+              </li>
+            }@else {
+              <li class="nav-item" routerLinkActive="bg-success text-white" [routerLink]="[menu.path]"><a class="nav-llink"
+                routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
+                <i class={{menu.icon}}></i>
+                {{menu.libelle}}
+              </a></li>
+            }
+          }
+        </ul>
+    </div>
+      }@else if (user.statut == 'agent') {
+      <!-- <img src="../../../assets/_f669d9cd-66f7-4297-8bff-f5e47e786f0f.jpeg" alt=""> -->
+      <!-- <ul>
     @for (menu of menu_agent.items; track $index) {
       <i class='bx bx-log-out-circle'></i>
-      <!-- Module home -->
       <li class="nav-item" routerLinkActive="bg-success text-white" [routerLink]="[menu.path]"><a
         class="nav-llink" routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
         <i class={{menu.icon}}></i>
         {{menu.libelle}}
       </a></li>
     }
-  </ul>
+    </ul> -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <i class="bi bi-person-circle icon-extra-large"></i>
+        <h3>{{user.nom}}</h3>
+    </div>
 
-}
-<ul>
-  <li routerLinkActive="bg-primary text-white" (click)="deconnexion()">
-      <a routerLinkActive="bg-primary text-white" (click)="deconnexion()" data-bs-dismiss="modal">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        Deconnexion
-      </a>
-    </li>
-  </ul>
-</div>
-<div class="container">
-  <img src="../../../assets/image/logosamahampate.png" alt="">
-  <router-outlet></router-outlet>
-</div>
+    <ul class="sidebar-menu">
+      <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/demande']">
+        <a class="nav-llink"  id="link" >
+          Demande</a>
 
-</div>
+      </li>
+    </ul>
+    <ul>
+    @for (menu of menu_chef.items; track $index) {
+      @if (menu.libelle == 'service') {
+
+        <li class="sidebar-item" routerLinkActive="bg-success text-white" (click)="toggleDropdown($event)">
+          <h5>{{menu.libelle}}</h5>
+          <!-- <a class="nav-llink"
+          routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
+          <i class={{menu.icon}}></i>
+          {{menu.libelle}}
+        </a> -->
+        <ul class="sidebar-dropdown" [class.active]="isDropdownOpen">
+          @for (one_role of les_roles; track $index) {
+            @for (one_service of les_services; track $index) {
+
+            @if (user.id_utilisateur == one_role.id_utilisateur && one_role.id_service ==one_service.id_service) {
+
+            <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/'+path[$index]]" (click)="toggleDropdown($event)">
+              <a [routerLink]="['/home/'+path[$index]]">
+                {{one_service.nom}}
+              </a>
+            </li>
+            }
+            }
+            }
+
+        </ul>
+      </li>
+    }
+  }
+</ul>
+    <!-- <ul class="sidebar-dropdown" [class.active]="isDropdownOpen">
+      @for (one_role of les_roles; track $index) {
+      @for (one_service of les_services; track $index) {
+
+      @if (user.id_utilisateur == one_role.id_utilisateur && one_role.id_service ==one_service.id_service) {
+
+      <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/'+path[$index]]">
+        <a [routerLink]="['/home/'+path[$index]]">
+          {{one_service.nom}}
+        </a>
+      </li>
+      }
+      }
+      }
+    </ul> -->
+    </div>
+
+      }
+    </div>
+    <div class="container">
+      <div  id="deconnexion" class="d-flex align-content-center justify-content-end">
+            <a routerLinkActive="bg-primary text-white" (click)="deconnexion()" data-bs-dismiss="modal" class="btn btn-outline-secondary">
+              <i class="bi bi-box-arrow-left"></i>
+              Deconnexion
+            </a>
+      </div>
+      <!-- <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Mon Application</h3>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-item"><a href="#">Accueil</a></li>
+            <li class="sidebar-item">
+                <a href="#">Services</a>
+                <ul class="sidebar-dropdown">
+                    <li class="sidebar-dropdown-item"><a href="#">Service 1</a></li>
+                    <li class="sidebar-dropdown-item"><a href="#">Service 2</a></li>
+                    <li class="sidebar-dropdown-item"><a href="#">Service 3</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-item"><a href="#">À propos</a></li>
+            <li class="sidebar-item"><a href="#">Contact</a></li>
+        </ul>
+    </div> -->
+      <img src="../../../assets/image/logosamahampate.png" alt="">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>

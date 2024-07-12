@@ -159,6 +159,254 @@
   ]
   },
   {
+  "table": "role",
+  "description": [
+  "id_role",
+  "nom",
+  "id_utilisateur",
+  "id_service"
+  ],
+  "table_descriptions": {
+  "table_name": "role",
+  "cle_primaire": {
+  "Field": "id_role",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "role",
+  "utilisateur",
+  "service"
+  ],
+  "les_referenced_table": [
+  "utilisateur",
+  "service"
+  ],
+  "les_colonnes": [
+  {
+  "Field": "id_role",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "id_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "MUL",
+  "Default": null,
+  "Extra": "",
+  "explications": "cl\u00e9 \u00e9trang\u00e8re li\u00e9e \u00e0 la colonne id_utilisateur de la table utilisateur",
+  "table": {
+  "TABLE_NAME": "role",
+  "COLUMN_NAME": "id_utilisateur",
+  "REFERENCED_TABLE_NAME": "utilisateur",
+  "REFERENCED_COLUMN_NAME": "id_utilisateur"
+  },
+  "table_existant": false,
+  "referenced_table": {
+  "table_name": "utilisateur",
+  "cle_primaire": {
+  "Field": "id_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "role",
+  "utilisateur"
+  ],
+  "les_referenced_table": [],
+  "les_colonnes": [
+  {
+  "Field": "id_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "prenom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "email",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "statut",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "password",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  }
+  ]
+  }
+  },
+  {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "MUL",
+  "Default": null,
+  "Extra": "",
+  "explications": "cl\u00e9 \u00e9trang\u00e8re li\u00e9e \u00e0 la colonne id_service de la table service",
+  "table": {
+  "TABLE_NAME": "role",
+  "COLUMN_NAME": "id_service",
+  "REFERENCED_TABLE_NAME": "service",
+  "REFERENCED_COLUMN_NAME": "id_service"
+  },
+  "table_existant": false,
+  "referenced_table": {
+  "table_name": "service",
+  "cle_primaire": {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "role",
+  "utilisateur",
+  "service"
+  ],
+  "les_referenced_table": [],
+  "les_colonnes": [
+  {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  }
+  ]
+  }
+  }
+  ]
+  },
+  "les_types": [
+  "add",
+  "edit",
+  "list",
+  "details"
+  ]
+  },
+  {
+  "table": "service",
+  "description": [
+  "id_service",
+  "nom"
+  ],
+  "table_descriptions": {
+  "table_name": "service",
+  "cle_primaire": {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "service"
+  ],
+  "les_referenced_table": [],
+  "les_colonnes": [
+  {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  }
+  ]
+  },
+  "les_types": [
+  "add",
+  "edit",
+  "list",
+  "details"
+  ]
+  },
+  {
   "table": "utilisateur",
   "description": [
   "id_utilisateur",

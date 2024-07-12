@@ -1,22 +1,23 @@
-<div class="d-flex align-items-center vh-100">
+<div class="card w-50 m-auto p-2">
   <div class="container">
+    <h1 class="text text-success text-center">Connexion</h1>
     <form  [formGroup]="reactiveForm_login_login " (ngSubmit)="onSubmit_login_login ()" #form_login_login ="ngForm" class="row">
       <!-- login field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >login</label>
-      <input class="form-control" type="text"  formControlName="login"  placeholder="login"  [ngClass]="{ 'is-invalid': submitted && f.login.errors }"/>
+    <div class="form-group col-sm-12">
+      <label >Email</label>
+      <input class="form-control" type="text"  formControlName="login"  placeholder="email"  [ngClass]="{ 'is-invalid': submitted && f.login.errors }"/>
       <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
           <div *ngIf="f.login.errors.required"> login est obligatoire </div>
       </div>
-    </div>  
+    </div>
 <!-- pwd field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >pwd</label>
+    <div class="form-group col-sm-12">
+      <label >Mot de pass</label>
       <input class="form-control" type="text"  formControlName="pwd"  placeholder="pwd"  [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }"/>
       <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
           <div *ngIf="f.pwd.errors.required"> pwd est obligatoire </div>
       </div>
-    </div>  
+    </div>
     </form>
     <!-- vous pouvez valider votre formulaire n'importe ou -->
 

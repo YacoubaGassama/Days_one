@@ -11,43 +11,56 @@
     <thead>
       <tr>
         <!-- <th scope="col">id_demande</th> -->
-<th scope="col">type</th>
-<th scope="col">etat</th>
-<th scope="col">demandeur</th><th scope="col">actions</th>
+        <th scope="col">type</th>
+        <th scope="col">etat</th>
+        <th scope="col">demandeur</th>
+        <th scope="col">actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_demande of les_demandes">
         @if (user.statut == 'admin') {
 
-          <!-- <td>{{one_demande.id_demande}}</td> -->
-          <td>{{one_demande.type}}</td>
-          <td>{{one_demande.etat}}</td>
-            @for (demandeur of les_utilisateurs; track $index) {
-              @if (demandeur.id_utilisateur == one_demande.demandeur) {
-                <td>{{demandeur.nom}}</td>
-              }
-            }
-          <!-- <td>{{one_demande.demandeur}}</td> -->
-        }@else if(user.id_utilisateur == one_demande.demandeur){
-          <!-- <td>{{one_demande.id_demande}}</td> -->
-          <td>{{one_demande.type}}</td>
-          <td>{{one_demande.etat}}</td>
-          <td>{{one_demande.demandeur}}</td>
+        <!-- <td>{{one_demande.id_demande}}</td> -->
+        <td>{{one_demande.type}}</td>
+        <td>{{one_demande.etat}}</td>
+        @for (demandeur of les_utilisateurs; track $index) {
+        @if (demandeur.id_utilisateur == one_demande.demandeur) {
+        <td>{{demandeur.nom}}</td>
+        }
         }
         <td>
-  <div class="dropdown">
-    <button [disabled]="loading_delete_demande" type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">{{loading_delete_demande?"en cours ...":"actions"}}</button>
-    <div class="dropdown-menu">
-      <a (click)="on_click_edit(one_demande)" class="dropdown-item" data-bs-toggle="modal"
-        data-bs-target="#modal_edit_demande">
-        <i class="bx bx-edit-alt me-1"></i>
-        Modifier
-      </a>
-      <a class="dropdown-item" href="javascript:void(0);" (click)=delete_demande({id_demande:one_demande.id_demande})><i class="bx bx-trash me-1"></i>Supprimer</a>
-    </div>
-  </div>
-</td>
+          <i class="bi bi-x-circle text-danger" href="javascript:void(0);"
+            (click)=delete_demande({id_demande:one_demande.id_demande})></i>
+          <i class="bi bi-check-circle text-success p-4" (click)="on_click_edit(one_demande)" data-bs-toggle="modal" data-bs-target="#modal_edit_demande"></i>
+        </td>
+        <!-- <td>{{one_demande.demandeur}}</td> -->
+        }@else if(user.id_utilisateur == one_demande.demandeur){
+        <!-- <td>{{one_demande.id_demande}}</td> -->
+        <td>{{one_demande.type}}</td>
+        <td>{{one_demande.etat}}</td>
+        <td>{{one_demande.demandeur}}</td>
+        <td>
+          <i class="bi bi-x-circle text-danger" href="javascript:void(0);"
+            (click)=delete_demande({id_demande:one_demande.id_demande})></i>
+          <i class="bi bi-check-circle text-success p-4" (click)="on_click_edit(one_demande)" data-bs-toggle="modal" data-bs-target="#modal_edit_demande"></i>
+        </td>
+        }
+        <td>
+          <div class="dropdown" *ngIf="user.statut == 'admin'">
+            <button [disabled]="loading_delete_demande" type="button" class="btn p-0 dropdown-toggle hide-arrow"
+              data-bs-toggle="dropdown">{{loading_delete_demande?"en cours ...":"actions"}}</button>
+            <div class="dropdown-menu">
+              <a (click)="on_click_edit(one_demande)" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_edit_demande">
+                <i class="bx bx-edit-alt me-1"></i>
+                Modifier
+              </a>
+              <a class="dropdown-item" href="javascript:void(0);"
+                (click)=delete_demande({id_demande:one_demande.id_demande})><i
+                  class="bx bx-trash me-1"></i>Supprimer</a>
+            </div>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -55,15 +68,15 @@
 <!-- ajout -->
 <div class="modal fade" id="modal_add_demande" data-bs-backdrop="static">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-          <div class="modal-header " data-bs-theme="dark">
-              <h1 class="modal-title fs-5">Ajouter Demande</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <app-add-demande (cb_add_demande)="after_add($event)"></app-add-demande>
-          </div>
+    <div class="modal-content">
+      <div class="modal-header " data-bs-theme="dark">
+        <h1 class="modal-title fs-5">Ajouter Demande</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body">
+        <app-add-demande (cb_add_demande)="after_add($event)"></app-add-demande>
+      </div>
+    </div>
   </div>
 </div>
 <!-- modification -->
@@ -72,10 +85,12 @@
     <div class="modal-content">
       <div class="modal-header" data-bs-theme="dark">
         <h1 class="modal-title fs-5">Modifier Demande</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="on_close_modal_edit()"></button>
       </div>
       <div class="modal-body">
-        <app-edit-demande *ngIf="demande_to_edit" (cb_edit_demande)="after_edit($event)" [demande_to_edit]="demande_to_edit"></app-edit-demande>
+        <app-edit-demande *ngIf="demande_to_edit" (cb_edit_demande)="after_edit($event)"
+          [demande_to_edit]="demande_to_edit"></app-edit-demande>
       </div>
     </div>
   </div>

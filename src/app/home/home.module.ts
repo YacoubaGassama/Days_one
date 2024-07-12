@@ -10,6 +10,12 @@ import { ListDemandeComponent } from './demande/list-demande/list-demande.compon
 import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utilisateur.component';
 import { EditUtilisateurComponent } from './utilisateur/edit-utilisateur/edit-utilisateur.component';
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
+import { AddRoleComponent } from './role/add-role/add-role.component';
+import { EditRoleComponent } from './role/edit-role/edit-role.component';
+import { ListRoleComponent } from './role/list-role/list-role.component';
+import { AddServiceComponent } from './service/add-service/add-service.component';
+import { EditServiceComponent } from './service/edit-service/edit-service.component';
+import { ListServiceComponent } from './service/list-service/list-service.component';
   
   
   @NgModule({
@@ -20,7 +26,13 @@ import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-ut
     ListDemandeComponent,
     AddUtilisateurComponent,
     EditUtilisateurComponent,
-    ListUtilisateurComponent
+    ListUtilisateurComponent,
+    AddRoleComponent,
+    EditRoleComponent,
+    ListRoleComponent,
+    AddServiceComponent,
+    EditServiceComponent,
+    ListServiceComponent
   ],
     imports: [
       CommonModule,

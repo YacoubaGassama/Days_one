@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { PublicComponent } from './public/public/public.component';
 import { AuthGuard } from './guard/auth/auth.guard';
 import { HomeComponent } from './home/home/home.component';
+import { FinanceComponent } from './home/finance/finance.component';
 
 const routes: Routes =  [
   { path: "", pathMatch: "full", redirectTo: "public" },
+  {path:"finance",component:FinanceComponent},
   {
     path: "home",
     component:HomeComponent,
