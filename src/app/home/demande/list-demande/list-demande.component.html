@@ -13,7 +13,7 @@
         <!-- <th scope="col">id_demande</th> -->
         <th scope="col">type</th>
         <th scope="col">etat</th>
-        <th scope="col">demandeur</th>
+        <th scope="col" *ngIf="user.statut == 'admin'">demandeur</th>
         <th scope="col">actions</th>
       </tr>
     </thead>
@@ -23,7 +23,19 @@
 
         <!-- <td>{{one_demande.id_demande}}</td> -->
         <td>{{one_demande.type}}</td>
-        <td>{{one_demande.etat}}</td>
+        @if (one_demande.etat == 'en cours') {
+          <td >
+            <p class="text text-primar btn btn-outline-primary"  id="etat">{{one_demande.etat}}</p>
+          </td>
+        }@else if (one_demande.etat == 'accepté') {
+          <td>
+            <p class="text text-success- btn btn-outline-success" id="etat">{{one_demande.etat}}</p>
+          </td>
+        }@else if (one_demande.etat == 'refugé'){
+          <td  >
+            <p class="text text-danger btn btn-outline-danger" id="etat">{{one_demande.etat}}</p>
+          </td>
+        }
         @for (demandeur of les_utilisateurs; track $index) {
         @if (demandeur.id_utilisateur == one_demande.demandeur) {
         <td>{{demandeur.nom}}</td>
@@ -32,14 +44,14 @@
         <td>
           <i class="bi bi-x-circle text-danger" href="javascript:void(0);"
             (click)=delete_demande({id_demande:one_demande.id_demande})></i>
-          <i class="bi bi-check-circle text-success p-4" (click)="on_click_edit(one_demande)" data-bs-toggle="modal" data-bs-target="#modal_edit_demande"></i>
+          <i class="bi bi-pencil-square text-dark p-4" (click)="on_click_edit(one_demande)" data-bs-toggle="modal" data-bs-target="#modal_edit_demande"></i>
         </td>
         <!-- <td>{{one_demande.demandeur}}</td> -->
         }@else if(user.id_utilisateur == one_demande.demandeur){
         <!-- <td>{{one_demande.id_demande}}</td> -->
         <td>{{one_demande.type}}</td>
         <td>{{one_demande.etat}}</td>
-        <td>{{one_demande.demandeur}}</td>
+        <!-- <td>{{one_demande.demandeur}}</td> -->
         <td>
           <i class="bi bi-x-circle text-danger" href="javascript:void(0);"
             (click)=delete_demande({id_demande:one_demande.id_demande})></i>

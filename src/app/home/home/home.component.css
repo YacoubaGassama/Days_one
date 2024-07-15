@@ -82,10 +82,6 @@ body {
   padding: 0;
 }
 
-.sidebar-item {
-  /* padding: 10px; */
-}
-
 .sidebar-item a {
   color: white;
   text-decoration: none;
@@ -115,4 +111,7 @@ body {
 
 .sidebar-dropdown-item a:hover {
   background-color: #575757;
+}
+#container{
+  width: 900px;
 }
