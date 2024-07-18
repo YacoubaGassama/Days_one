@@ -75,8 +75,8 @@ body {
 
 }
 .icon-extra-large {
-            font-size: 3rem; /* 48px */
-        }
+  font-size: 3rem;
+}
 .sidebar-menu {
   list-style-type: none;
   padding: 0;
@@ -115,3 +115,5 @@ body {
 #container{
   width: 900px;
 }
+
+

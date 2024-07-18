@@ -7,6 +7,8 @@ import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-ut
 import { EditDemandeComponent } from './demande/edit-demande/edit-demande.component';
 import { FinanceComponent } from './finance/finance.component';
 import { ScolariteComponent } from '../scolarite/scolarite.component';
+import { RHComponent } from '../rh/rh.component';
+import { PedagogieComponent } from '../pedagogie/pedagogie.component';
 
 const routes: Routes = [
   {path:"",component:ListDemandeComponent},
@@ -16,7 +18,9 @@ const routes: Routes = [
 {path:"service",component:ListServiceComponent},
 {path:"role",component:ListRoleComponent},
 {path:"finance",component:FinanceComponent},
-{path:"scolarite",component:ScolariteComponent}
+{path:"scolarite",component:ScolariteComponent},
+{path:"RH",component:RHComponent},
+{path:"Pedagogie",component:PedagogieComponent}
 ];
 
 @NgModule({

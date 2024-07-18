@@ -6,12 +6,18 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ScolariteComponent } from './scolarite/scolarite.component';
 import { FinanceComponent } from './home/finance/finance.component';
+import { RHComponent } from './rh/rh.component';
+import { AdministrationComponent } from './administration/administration.component';
+import { PedagogieComponent } from './pedagogie/pedagogie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScolariteComponent,
-    FinanceComponent
+    FinanceComponent,
+    RHComponent,
+    AdministrationComponent,
+    PedagogieComponent
   ],
   imports: [
     BrowserModule,
