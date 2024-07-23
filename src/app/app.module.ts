@@ -9,6 +9,7 @@ import { FinanceComponent } from './home/finance/finance.component';
 import { RHComponent } from './rh/rh.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { PedagogieComponent } from './pedagogie/pedagogie.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PedagogieComponent } from './pedagogie/pedagogie.component';
     FinanceComponent,
     RHComponent,
     AdministrationComponent,
-    PedagogieComponent
+    PedagogieComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

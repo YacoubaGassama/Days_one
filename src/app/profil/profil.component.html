@@ -1,0 +1,19 @@
+<div class="d-flex align-items-center justify-content-center header">
+  <div >
+    <i class="bi bi-person-circle icon-extra-large"></i>
+<h4><strong>{{user.nom+" "+user.prenom}}</strong></h4>
+<span>{{user.email}}</span>
+  </div>
+</div>
+<div class="d-flex align-items-center justify-content-between p-3">
+  <div class="card w-50 p-2">
+@for (service of les_services; track $index) {
+  @if (user.id_service == service.id_service) {
+    {{service.nom}}
+  }
+}
+  </div>
+<div class="card w-50 p-2 m-2">
+
+</div>
+</div>

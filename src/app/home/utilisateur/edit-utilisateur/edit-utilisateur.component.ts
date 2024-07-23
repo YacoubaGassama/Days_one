@@ -17,12 +17,14 @@ export class EditUtilisateurComponent {
   cb_edit_utilisateur=new EventEmitter()
   form_details: any = {}
   loading_get_details_add_utilisateur_form = false
-  constructor(private formBuilder: FormBuilder, public api: ApiService) { 
-      
+  user:any
+  constructor(private formBuilder: FormBuilder, public api: ApiService) {
+      this.user = this.api.token.user_connected
   }
   ngOnInit(): void {
       this.get_details_add_utilisateur_form()
       this.update_form(this.utilisateur_to_edit)
+      this.get_structure()
   }
   // mise à jour du formulaire
   update_form(utilisateur_to_edit:any) {
@@ -87,6 +89,24 @@ statut : [utilisateur_to_edit.statut, Validators.required]
         this.loading_get_details_add_utilisateur_form = false;
       }, (error: any) => {
       this.loading_get_details_add_utilisateur_form = false;
+    })
+  }
+
+  loading_get_structure:boolean = false
+  les_structures:any
+  get_structure() {
+    this.loading_get_structure = true;
+    this.api.taf_post("structure/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_structures = reponse.data
+        console.log("Opération effectuée avec succés sur la table structure. Réponse= ", reponse);
+      } else {
+        console.log("L'opération sur la table structure a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_structure = false;
+    }, (error: any) => {
+      this.loading_get_structure = false;
     })
   }
 }

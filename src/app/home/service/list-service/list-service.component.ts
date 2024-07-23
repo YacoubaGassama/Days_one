@@ -11,12 +11,18 @@ export class ListServiceComponent {
   selected_service: any = undefined
   service_to_edit: any = undefined
   loading_delete_service = false
+  user:any
   constructor(public api: ApiService,) {
 
+    this.user = this.api.token.user_connected
   }
   ngOnInit(): void {
     this.get_service()
   }
+
+
+
+
   get_service() {
     this.loading_get_service = true;
     this.api.taf_post("service/get", {}, (reponse: any) => {
@@ -35,6 +41,7 @@ export class ListServiceComponent {
 
   after_add(event: any) {
     if (event.status) {
+      this.get_service()
       this.les_services.unshift(event.service)
     } else {
 

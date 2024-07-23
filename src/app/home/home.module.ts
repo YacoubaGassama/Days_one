@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
   import { CommonModule } from '@angular/common';
-  
+
   import { HomeRoutingModule } from './home-routing.module';
-  import { ReactiveFormsModule } from '@angular/forms';
+  import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AddDemandeComponent } from './demande/add-demande/add-demande.component';
 import { EditDemandeComponent } from './demande/edit-demande/edit-demande.component';
@@ -16,8 +16,20 @@ import { ListRoleComponent } from './role/list-role/list-role.component';
 import { AddServiceComponent } from './service/add-service/add-service.component';
 import { EditServiceComponent } from './service/edit-service/edit-service.component';
 import { ListServiceComponent } from './service/list-service/list-service.component';
-  
-  
+import { AddPrivilegeComponent } from './privilege/add-privilege/add-privilege.component';
+import { EditPrivilegeComponent } from './privilege/edit-privilege/edit-privilege.component';
+import { ListPrivilegeComponent } from './privilege/list-privilege/list-privilege.component';
+import { AddStructureComponent } from './structure/add-structure/add-structure.component';
+import { EditStructureComponent } from './structure/edit-structure/edit-structure.component';
+import { ListStructureComponent } from './structure/list-structure/list-structure.component';
+import { AddCarriereComponent } from './carriere/add-carriere/add-carriere.component';
+import { EditCarriereComponent } from './carriere/edit-carriere/edit-carriere.component';
+import { ListCarriereComponent } from './carriere/list-carriere/list-carriere.component';
+import { AddLigneServiceComponent } from './ligne-service/add-ligne-service/add-ligne-service.component';
+import { EditLigneServiceComponent } from './ligne-service/edit-ligne-service/edit-ligne-service.component';
+import { ListLigneServiceComponent } from './ligne-service/list-ligne-service/list-ligne-service.component';
+
+
   @NgModule({
     declarations: [
     HomeComponent,
@@ -32,13 +44,25 @@ import { ListServiceComponent } from './service/list-service/list-service.compon
     ListRoleComponent,
     AddServiceComponent,
     EditServiceComponent,
-    ListServiceComponent
+    ListServiceComponent,
+    AddPrivilegeComponent,
+    EditPrivilegeComponent,
+    ListPrivilegeComponent,
+    AddStructureComponent,
+    EditStructureComponent,
+    ListStructureComponent,
+    AddCarriereComponent,
+    EditCarriereComponent,
+    ListCarriereComponent,
+    AddLigneServiceComponent,
+    EditLigneServiceComponent,
+    ListLigneServiceComponent
   ],
     imports: [
       CommonModule,
       HomeRoutingModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      FormsModule
     ]
   })
   export class HomeModule { }
-  

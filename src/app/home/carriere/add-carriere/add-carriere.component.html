@@ -1,0 +1,19 @@
+
+<form  [formGroup]="reactiveForm_add_carriere " (ngSubmit)="onSubmit_add_carriere ()" #form_add_carriere ="ngForm" class="row">
+  
+<!-- niveau field avec un control de validite -->
+          <div class="form-group col-sm-6">
+          <label >niveau</label>
+          <input class="form-control" type="text"  formControlName="niveau"  placeholder="niveau"  [ngClass]="{ 'is-invalid': submitted && f.niveau.errors }"/>
+          <div *ngIf="submitted && f.niveau.errors" class="invalid-feedback">
+          <div *ngIf="f.niveau.errors.required"> niveau est obligatoire </div>
+          </div>
+          </div>  
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_carriere "
+        (click)="form_add_carriere .ngSubmit.emit()">{{loading_add_carriere ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_add_carriere ()">Vider</button>
+</div>

@@ -1,43 +1,99 @@
-
 <form  [formGroup]="reactiveForm_edit_utilisateur " (ngSubmit)="onSubmit_edit_utilisateur ()" #form_edit_utilisateur ="ngForm" class="row">
-  
-<!-- nom field avec un control de validite -->
-          <div class="form-group col-sm-6">
-          <label >nom</label>
-          <input class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"/>
-          <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
-          <div *ngIf="f.nom.errors.required"> nom est obligatoire </div>
-          </div>
-          </div>  
-<!-- prenom field avec un control de validite -->
-          <div class="form-group col-sm-6">
-          <label >prenom</label>
-          <input class="form-control" type="text"  formControlName="prenom"  placeholder="prenom"  [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }"/>
-          <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
-          <div *ngIf="f.prenom.errors.required"> prenom est obligatoire </div>
-          </div>
-          </div>  
-<!-- email field avec un control de validite -->
-          <div class="form-group col-sm-6">
-          <label >email</label>
-          <input class="form-control" type="text"  formControlName="email"  placeholder="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-          <div *ngIf="f.email.errors.required"> email est obligatoire </div>
-          </div>
-          </div>  
-<!-- statut field avec un control de validite -->
-          <div class="form-group col-sm-6">
-          <label >statut</label>
-          <input class="form-control" type="text"  formControlName="statut"  placeholder="statut"  [ngClass]="{ 'is-invalid': submitted && f.statut.errors }"/>
-          <div *ngIf="submitted && f.statut.errors" class="invalid-feedback">
-          <div *ngIf="f.statut.errors.required"> statut est obligatoire </div>
-          </div>
-          </div>  
-</form>
-<!-- vous pouvez valider votre formulaire n'importe ou -->
 
-<div class="text-center m-2">
-    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_utilisateur "
-        (click)="form_edit_utilisateur .ngSubmit.emit()">{{loading_edit_utilisateur ?"En cours ...":"Valider"}}</button>
-    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_utilisateur ()">Vider</button>
-</div>
+  <!-- champs nom avec une gestion de la validité -->
+  @if (user.statut != 'chef') {
+
+  <div class="form-group col-sm-6">
+  <label >nom</label>
+  <input class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"/>
+  <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+  <div *ngIf="f.nom.errors.required"> nom est obligatoire </div>
+  </div>
+  </div>
+  <!-- champs prenom avec une gestion de la validité -->
+  <div class="form-group col-sm-6">
+  <label >prenom</label>
+  <input class="form-control" type="text"  formControlName="prenom"  placeholder="prenom"  [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }"/>
+  <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+  <div *ngIf="f.prenom.errors.required"> prenom est obligatoire </div>
+  </div>
+  </div>
+  <!-- champs email avec une gestion de la validité -->
+  <div class="form-group col-sm-6">
+  <label >email</label>
+  <input class="form-control" type="text"  formControlName="email"  placeholder="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+  <div *ngIf="f.email.errors.required"> email est obligatoire </div>
+  </div>
+  </div>
+  <!-- champs statut avec une gestion de la validité -->
+  <div class="form-group col-sm-6">
+  <label >statut</label>
+  <input class="form-control" type="text"  formControlName="statut"  placeholder="statut"  [ngClass]="{ 'is-invalid': submitted && f.statut.errors }"/>
+  <div *ngIf="submitted && f.statut.errors" class="invalid-feedback">
+  <div *ngIf="f.statut.errors.required"> statut est obligatoire </div>
+  </div>
+  </div>
+  <!-- champs password avec une gestion de la validité -->
+  <div class="form-group col-sm-6">
+  <label >password</label>
+  <input class="form-control" type="text"  formControlName="password"  placeholder="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+  <div *ngIf="f.password.errors.required"> password est obligatoire </div>
+  </div>
+  </div>
+  <!-- champs id_structure avec un control de validite : clé étrangère liée à la colonne id_structure de la table structure -->
+
+    <div class="form-group col-sm-6" >
+      <label >structure</label>
+      <select [ngClass]="{ 'is-invalid': submitted && f.id_structure.errors }" class="form-select" formControlName="id_structure">
+        <option value="">Sélectionnez un(e) structure</option>
+        <option [value]="one_structure.id_structure" *ngFor="let one_structure of form_details.les_structures">{{one_structure.nom}}</option>
+      </select>
+      <div *ngIf="submitted && f.id_structure.errors" class="invalid-feedback">
+        <div *ngIf="f.id_structure.errors.required">ce champ est obligatoire</div>
+      </div>
+    </div>
+  }@else {
+      <!-- champs id_service avec un control de validite : clé étrangère liée à la colonne id_service de la table service -->
+    <div class="form-group col-sm-6">
+      <label >service</label>
+      <select [ngClass]="{ 'is-invalid': submitted && f.id_service.errors }" class="form-select" formControlName="id_service">
+      <option value="">Sélectionnez un(e) service</option>
+      <!-- <option [value]="one_service.id_service" *ngFor="let one_service of form_details.les_services">{{one_service.nom}}</option> -->
+      @for (structure of les_structures; track $index) {
+        @if (user.id_structure == structure.id_structure) {
+
+          <option [value]="one_service.id_service" *ngFor="let one_service of form_details.les_services">
+            @if ( user.statut == 'chef' && user.id_structure == one_service.id_structure) {
+              {{one_service.nom}}
+            }
+          </option>
+        }
+      }
+      </select>
+      <div *ngIf="submitted && f.id_service.errors" class="invalid-feedback">
+      <div *ngIf="f.id_service.errors.required">ce champ est obligatoire</div>
+      </div>
+      </div>
+  }
+  <!-- champs id_carriere avec un control de validite : clé étrangère liée à la colonne id_carriere de la table carriere -->
+  <div class="form-group col-sm-6">
+  <label >carriere</label>
+  <select [ngClass]="{ 'is-invalid': submitted && f.id_carriere.errors }" class="form-select" formControlName="id_carriere">
+  <option value="">Sélectionnez un(e) carriere</option>
+  <option [value]="one_carriere.id_carriere" *ngFor="let one_carriere of form_details.les_carrieres">{{one_carriere.niveau}}</option>
+  </select>
+  <div *ngIf="submitted && f.id_carriere.errors" class="invalid-feedback">
+  <div *ngIf="f.id_carriere.errors.required">ce champ est obligatoire</div>
+  </div>
+  </div>
+
+  </form>
+  <!-- vous pouvez valider votre formulaire n\'importe ou -->
+
+  <div class="text-center m-2">
+  <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_utilisateur "
+  (click)="form_edit_utilisateur .ngSubmit.emit()">{{loading_edit_utilisateur ?"En cours ...":"Valider"}}</button>
+  <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_utilisateur ()">Vider</button>
+  </div>

@@ -20,9 +20,12 @@ export class HomeComponent {
     titre:"Chef",
     items:[
       {libelle:"Demande à traiter",path:"/home/demande"},
-      {libelle:"Utilisateur",path:"/home/utilisateur"},
+      {libelle:"Agent",path:"/home/utilisateur"},
       {libelle:"Role",path:"/home/role"},
       {libelle:"service",path:"/home/service"},
+      {libelle:"structure",path:"/home/structure"},
+      {libelle:"ligne_service",path:"/home/ligne_service"},
+      {libelle:"carriere",path:"/home/carriere"},
 
     ]
   }
@@ -43,9 +46,49 @@ export class HomeComponent {
 
     this.get_role()
     this.get_service()
+    this.get_structure()
+    this.get_carriere()
 
     console.log(this.path)
   }
+
+  loading_get_carriere:boolean = false
+  les_carrieres:any
+  get_carriere() {
+    this.loading_get_carriere = true;
+    this.api.taf_post("carriere/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_carrieres = reponse.data
+        console.log("Opération effectuée avec succés sur la table carriere. Réponse= ", reponse);
+      } else {
+        console.log("L'opération sur la table carriere a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_carriere = false;
+    }, (error: any) => {
+      this.loading_get_carriere = false;
+    })
+  }
+
+
+  loading_get_structure:boolean = false
+  les_structures:any
+  get_structure() {
+    this.loading_get_structure = true;
+    this.api.taf_post("structure/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_structures = reponse.data
+        console.log("Opération effectuée avec succés sur la table structure. Réponse= ", reponse);
+      } else {
+        console.log("L'opération sur la table structure a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_structure = false;
+    }, (error: any) => {
+      this.loading_get_structure = false;
+    })
+  }
+
 
   loading_get_role:boolean = false
   les_roles:any

@@ -61,6 +61,8 @@ body {
 
 .sidebar {
   width: 200px;
+  overflow: scroll;
+  overflow-x: hidden;
   background-color: rgb(159, 197, 154);
   /* color: white; */
   height: 100vh;
@@ -113,7 +115,7 @@ body {
   background-color: #575757;
 }
 #container{
-  width: 900px;
+  width: 1200px;
 }
 
 

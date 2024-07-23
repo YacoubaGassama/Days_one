@@ -1,0 +1,67 @@
+<!-- entete -->
+<div class="d-flex align-items-center justify-content-between">
+  <div class="fs-1">Les LigneServices  - {{les_ligne_services.length}}</div>
+  <div class="d-flex">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_ligne_service">Ajouter LigneService</button>
+  </div>
+</div>
+<!-- list -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id_ligne_service</th>
+<th scope="col">id_service</th>
+<th scope="col">id_strucrure</th><th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let one_ligne_service of les_ligne_services">
+        <td>{{one_ligne_service.id_ligne_service}}</td>
+<td>{{one_ligne_service.id_service}}</td>
+<td>{{one_ligne_service.id_strucrure}}</td><td>
+  <div class="dropdown">
+    <button [disabled]="loading_delete_ligne_service" type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">{{loading_delete_ligne_service?"en cours ...":"actions"}}</button>
+    <div class="dropdown-menu">
+      <a (click)="on_click_edit(one_ligne_service)" class="dropdown-item" data-bs-toggle="modal"
+        data-bs-target="#modal_edit_ligne_service">
+        <i class="bx bx-edit-alt me-1"></i>
+        Modifier
+      </a>
+      <a class="dropdown-item" href="javascript:void(0);" (click)=delete_ligne_service({id_ligne_service:one_ligne_service.id_ligne_service})><i class="bx bx-trash me-1"></i>Supprimer</a>
+    </div>
+  </div>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- ajout -->
+<div class="modal fade" id="modal_add_ligne_service" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header " data-bs-theme="dark">
+              <h1 class="modal-title fs-5">Ajouter LigneService</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <app-add-ligne-service (cb_add_ligne_service)="after_add($event)"></app-add-ligne-service>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- modification -->
+<div class="modal fade" id="modal_edit_ligne_service" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header" data-bs-theme="dark">
+        <h1 class="modal-title fs-5">Modifier LigneService</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
+      </div>
+      <div class="modal-body">
+        <app-edit-ligne-service *ngIf="ligne_service_to_edit" (cb_edit_ligne_service)="after_edit($event)" [ligne_service_to_edit]="ligne_service_to_edit"></app-edit-ligne-service>
+      </div>
+    </div>
+  </div>
+</div>
+  

@@ -1,0 +1,33 @@
+
+<form  [formGroup]="reactiveForm_edit_ligne_service " (ngSubmit)="onSubmit_edit_ligne_service ()" #form_edit_ligne_service ="ngForm" class="row">
+  
+<!-- champs id_service avec un control de validite : clé étrangère liée à la colonne id_service de la table service -->
+        <div class="form-group col-sm-6">
+          <label >service</label>
+          <select [ngClass]="{ 'is-invalid': submitted && f.id_service.errors }" class="form-select" formControlName="id_service">
+            <option value="">Sélectionnez un(e) service</option>
+            <option [value]="one_service.id_service" *ngFor="let one_service of form_details.les_services">{{"service N°"+one_service.id_service}}</option>
+          </select>
+          <div *ngIf="submitted && f.id_service.errors" class="invalid-feedback">
+            <div *ngIf="f.id_service.errors.required">ce champ est obligatoire</div>
+          </div>
+        </div>
+<!-- champs id_strucrure avec un control de validite : clé étrangère liée à la colonne id_strucrure de la table structure -->
+        <div class="form-group col-sm-6">
+          <label >structure</label>
+          <select [ngClass]="{ 'is-invalid': submitted && f.id_strucrure.errors }" class="form-select" formControlName="id_strucrure">
+            <option value="">Sélectionnez un(e) structure</option>
+            <option [value]="one_structure.id_structure" *ngFor="let one_structure of form_details.les_structures">{{"structure N°"+one_structure.id_structure}}</option>
+          </select>
+          <div *ngIf="submitted && f.id_strucrure.errors" class="invalid-feedback">
+            <div *ngIf="f.id_strucrure.errors.required">ce champ est obligatoire</div>
+          </div>
+        </div>
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_ligne_service "
+        (click)="form_edit_ligne_service .ngSubmit.emit()">{{loading_edit_ligne_service ?"En cours ...":"Valider"}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_ligne_service ()">Vider</button>
+</div>
