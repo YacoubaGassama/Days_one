@@ -1,0 +1,45 @@
+<form  [formGroup]="reactiveForm_edit_tache " (ngSubmit)="onSubmit_edit_tache ()" #form_edit_tache ="ngForm" class="row">
+
+  <!-- champs nom avec une gestion de la validité -->
+  <div class="form-group col-sm-6">
+  <label >nom</label>
+  <input class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"/>
+  <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+  <div *ngIf="f.nom.errors.required"> nom est obligatoire </div>
+  </div>
+  </div>
+  <!-- champs lien avec une gestion de la validité -->
+  <div class="form-group col-sm-6">
+  <label >lien</label>
+  <input class="form-control" type="text"  formControlName="lien"  placeholder="lien"  [ngClass]="{ 'is-invalid': submitted && f.lien.errors }"/>
+  <div *ngIf="submitted && f.lien.errors" class="invalid-feedback">
+  <div *ngIf="f.lien.errors.required"> lien est obligatoire </div>
+  </div>
+  </div>
+  <!-- champs type avec une gestion de la validité -->
+  <div class="form-group col-sm-6">
+  <label >type</label>
+  <input class="form-control" type="text"  formControlName="type"  placeholder="type"  [ngClass]="{ 'is-invalid': submitted && f.type.errors }"/>
+  <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+  <div *ngIf="f.type.errors.required"> type est obligatoire </div>
+  </div>
+  </div>
+  <!-- champs id_service avec un control de validite : clé étrangère liée à la colonne id_service de la table service -->
+  <div class="form-group col-sm-6">
+  <label >service</label>
+  <select [ngClass]="{ 'is-invalid': submitted && f.id_service.errors }" class="form-select" formControlName="id_service">
+  <option value="">Sélectionnez un(e) service</option>
+  <option [value]="one_service.id_service" *ngFor="let one_service of form_details.les_services">{{"service N°"+one_service.id_service}}</option>
+  </select>
+  <div *ngIf="submitted && f.id_service.errors" class="invalid-feedback">
+  <div *ngIf="f.id_service.errors.required">ce champ est obligatoire</div>
+  </div>
+  </div>
+  </form>
+  <!-- vous pouvez valider votre formulaire n\'importe ou -->
+
+  <div class="text-center m-2">
+  <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_tache "
+  (click)="form_edit_tache .ngSubmit.emit()">{{loading_edit_tache ?"En cours ...":"Valider"}}</button>
+  <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_tache ()">Vider</button>
+  </div>

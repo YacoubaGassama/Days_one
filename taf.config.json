@@ -365,8 +365,8 @@
   "explications": ""
   },
   {
-  "Field": "id_structure",
-  "Type": "int(11)",
+  "Field": "type",
+  "Type": "varchar(50)",
   "Null": "NO",
   "Key": "",
   "Default": null,
@@ -374,7 +374,7 @@
   "explications": ""
   },
   {
-  "Field": "id_privilege",
+  "Field": "id_structure",
   "Type": "int(11)",
   "Null": "NO",
   "Key": "",
@@ -485,8 +485,8 @@
   "explications": ""
   },
   {
-  "Field": "id_structure",
-  "Type": "int(11)",
+  "Field": "type",
+  "Type": "varchar(50)",
   "Null": "NO",
   "Key": "",
   "Default": null,
@@ -494,7 +494,7 @@
   "explications": ""
   },
   {
-  "Field": "id_privilege",
+  "Field": "id_structure",
   "Type": "int(11)",
   "Null": "NO",
   "Key": "",
@@ -871,8 +871,8 @@
   "explications": ""
   },
   {
-  "Field": "id_structure",
-  "Type": "int(11)",
+  "Field": "type",
+  "Type": "varchar(50)",
   "Null": "NO",
   "Key": "",
   "Default": null,
@@ -880,7 +880,7 @@
   "explications": ""
   },
   {
-  "Field": "id_privilege",
+  "Field": "id_structure",
   "Type": "int(11)",
   "Null": "NO",
   "Key": "",
@@ -962,8 +962,8 @@
   "description": [
   "id_service",
   "nom",
-  "id_structure",
-  "id_privilege"
+  "type",
+  "id_structure"
   ],
   "table_descriptions": {
   "table_name": "service",
@@ -1000,8 +1000,8 @@
   "explications": ""
   },
   {
-  "Field": "id_structure",
-  "Type": "int(11)",
+  "Field": "type",
+  "Type": "varchar(50)",
   "Null": "NO",
   "Key": "",
   "Default": null,
@@ -1009,7 +1009,7 @@
   "explications": ""
   },
   {
-  "Field": "id_privilege",
+  "Field": "id_structure",
   "Type": "int(11)",
   "Null": "NO",
   "Key": "",
@@ -1065,6 +1065,623 @@
   "Default": null,
   "Extra": "",
   "explications": ""
+  }
+  ]
+  },
+  "les_types": [
+  "add",
+  "edit",
+  "list",
+  "details"
+  ]
+  },
+  {
+  "table": "tache",
+  "description": [
+  "id_tache",
+  "nom",
+  "lien",
+  "type",
+  "id_service"
+  ],
+  "table_descriptions": {
+  "table_name": "tache",
+  "cle_primaire": {
+  "Field": "id_tache",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "tache",
+  "service"
+  ],
+  "les_referenced_table": [
+  "service"
+  ],
+  "les_colonnes": [
+  {
+  "Field": "id_tache",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "lien",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "type",
+  "Type": "varchar(50)",
+  "Null": "YES",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "MUL",
+  "Default": null,
+  "Extra": "",
+  "explications": "cl\u00e9 \u00e9trang\u00e8re li\u00e9e \u00e0 la colonne id_service de la table service",
+  "table": {
+  "TABLE_NAME": "tache",
+  "COLUMN_NAME": "id_service",
+  "REFERENCED_TABLE_NAME": "service",
+  "REFERENCED_COLUMN_NAME": "id_service"
+  },
+  "table_existant": false,
+  "referenced_table": {
+  "table_name": "service",
+  "cle_primaire": {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "tache",
+  "service"
+  ],
+  "les_referenced_table": [],
+  "les_colonnes": [
+  {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "type",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "id_structure",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  }
+  ]
+  }
+  }
+  ]
+  },
+  "les_types": [
+  "add",
+  "edit",
+  "list",
+  "details"
+  ]
+  },
+  {
+  "table": "tache_utilisateur",
+  "description": [
+  "id_tache_utilisateur",
+  "id_utilisateur",
+  "id_tache"
+  ],
+  "table_descriptions": {
+  "table_name": "tache_utilisateur",
+  "cle_primaire": {
+  "Field": "id_tache_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "tache_utilisateur",
+  "utilisateur",
+  "tache"
+  ],
+  "les_referenced_table": [
+  "utilisateur",
+  "tache"
+  ],
+  "les_colonnes": [
+  {
+  "Field": "id_tache_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "id_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "MUL",
+  "Default": null,
+  "Extra": "",
+  "explications": "cl\u00e9 \u00e9trang\u00e8re li\u00e9e \u00e0 la colonne id_utilisateur de la table utilisateur",
+  "table": {
+  "TABLE_NAME": "tache_utilisateur",
+  "COLUMN_NAME": "id_utilisateur",
+  "REFERENCED_TABLE_NAME": "utilisateur",
+  "REFERENCED_COLUMN_NAME": "id_utilisateur"
+  },
+  "table_existant": false,
+  "referenced_table": {
+  "table_name": "utilisateur",
+  "cle_primaire": {
+  "Field": "id_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "tache_utilisateur",
+  "utilisateur",
+  "structure",
+  "carriere",
+  "service"
+  ],
+  "les_referenced_table": [
+  "structure",
+  "carriere",
+  "service"
+  ],
+  "les_colonnes": [
+  {
+  "Field": "id_utilisateur",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "prenom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "email",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "statut",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "password",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "id_structure",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "MUL",
+  "Default": "1",
+  "Extra": "",
+  "explications": "cl\u00e9 \u00e9trang\u00e8re li\u00e9e \u00e0 la colonne id_structure de la table structure",
+  "table": {
+  "TABLE_NAME": "utilisateur",
+  "COLUMN_NAME": "id_structure",
+  "REFERENCED_TABLE_NAME": "structure",
+  "REFERENCED_COLUMN_NAME": "id_structure"
+  },
+  "table_existant": false,
+  "referenced_table": {
+  "table_name": "structure",
+  "cle_primaire": {
+  "Field": "id_structure",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "tache_utilisateur",
+  "utilisateur",
+  "structure"
+  ],
+  "les_referenced_table": [],
+  "les_colonnes": [
+  {
+  "Field": "id_structure",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  }
+  ]
+  }
+  },
+  {
+  "Field": "id_carriere",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "MUL",
+  "Default": "1",
+  "Extra": "",
+  "explications": "cl\u00e9 \u00e9trang\u00e8re li\u00e9e \u00e0 la colonne id_carriere de la table carriere",
+  "table": {
+  "TABLE_NAME": "utilisateur",
+  "COLUMN_NAME": "id_carriere",
+  "REFERENCED_TABLE_NAME": "carriere",
+  "REFERENCED_COLUMN_NAME": "id_carriere"
+  },
+  "table_existant": false,
+  "referenced_table": {
+  "table_name": "carriere",
+  "cle_primaire": {
+  "Field": "id_carriere",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "tache_utilisateur",
+  "utilisateur",
+  "structure",
+  "carriere"
+  ],
+  "les_referenced_table": [],
+  "les_colonnes": [
+  {
+  "Field": "id_carriere",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "niveau",
+  "Type": "varchar(5)",
+  "Null": "NO",
+  "Key": "",
+  "Default": "A1",
+  "Extra": "",
+  "explications": ""
+  }
+  ]
+  }
+  },
+  {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "YES",
+  "Key": "MUL",
+  "Default": "1",
+  "Extra": "",
+  "explications": "cl\u00e9 \u00e9trang\u00e8re li\u00e9e \u00e0 la colonne id_service de la table service",
+  "table": {
+  "TABLE_NAME": "utilisateur",
+  "COLUMN_NAME": "id_service",
+  "REFERENCED_TABLE_NAME": "service",
+  "REFERENCED_COLUMN_NAME": "id_service"
+  },
+  "table_existant": false,
+  "referenced_table": {
+  "table_name": "service",
+  "cle_primaire": {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "tache_utilisateur",
+  "utilisateur",
+  "structure",
+  "carriere",
+  "service"
+  ],
+  "les_referenced_table": [],
+  "les_colonnes": [
+  {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "type",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "id_structure",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  }
+  ]
+  }
+  }
+  ]
+  }
+  },
+  {
+  "Field": "id_tache",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "MUL",
+  "Default": null,
+  "Extra": "",
+  "explications": "cl\u00e9 \u00e9trang\u00e8re li\u00e9e \u00e0 la colonne id_tache de la table tache",
+  "table": {
+  "TABLE_NAME": "tache_utilisateur",
+  "COLUMN_NAME": "id_tache",
+  "REFERENCED_TABLE_NAME": "tache",
+  "REFERENCED_COLUMN_NAME": "id_tache"
+  },
+  "table_existant": false,
+  "referenced_table": {
+  "table_name": "tache",
+  "cle_primaire": {
+  "Field": "id_tache",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "tache_utilisateur",
+  "utilisateur",
+  "tache",
+  "service"
+  ],
+  "les_referenced_table": [
+  "service"
+  ],
+  "les_colonnes": [
+  {
+  "Field": "id_tache",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "lien",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "type",
+  "Type": "varchar(50)",
+  "Null": "YES",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "MUL",
+  "Default": null,
+  "Extra": "",
+  "explications": "cl\u00e9 \u00e9trang\u00e8re li\u00e9e \u00e0 la colonne id_service de la table service",
+  "table": {
+  "TABLE_NAME": "tache",
+  "COLUMN_NAME": "id_service",
+  "REFERENCED_TABLE_NAME": "service",
+  "REFERENCED_COLUMN_NAME": "id_service"
+  },
+  "table_existant": false,
+  "referenced_table": {
+  "table_name": "service",
+  "cle_primaire": {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  "les_based_table_name": [
+  "tache_utilisateur",
+  "utilisateur",
+  "tache",
+  "service"
+  ],
+  "les_referenced_table": [],
+  "les_colonnes": [
+  {
+  "Field": "id_service",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "PRI",
+  "Default": null,
+  "Extra": "auto_increment",
+  "explications": "cl\u00e9 primaire"
+  },
+  {
+  "Field": "nom",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "type",
+  "Type": "varchar(50)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  },
+  {
+  "Field": "id_structure",
+  "Type": "int(11)",
+  "Null": "NO",
+  "Key": "",
+  "Default": null,
+  "Extra": "",
+  "explications": ""
+  }
+  ]
+  }
+  }
+  ]
+  }
   }
   ]
   },
@@ -1325,8 +1942,8 @@
   "explications": ""
   },
   {
-  "Field": "id_structure",
-  "Type": "int(11)",
+  "Field": "type",
+  "Type": "varchar(50)",
   "Null": "NO",
   "Key": "",
   "Default": null,
@@ -1334,7 +1951,7 @@
   "explications": ""
   },
   {
-  "Field": "id_privilege",
+  "Field": "id_structure",
   "Type": "int(11)",
   "Null": "NO",
   "Key": "",

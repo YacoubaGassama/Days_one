@@ -28,6 +28,12 @@ import { ListCarriereComponent } from './carriere/list-carriere/list-carriere.co
 import { AddLigneServiceComponent } from './ligne-service/add-ligne-service/add-ligne-service.component';
 import { EditLigneServiceComponent } from './ligne-service/edit-ligne-service/edit-ligne-service.component';
 import { ListLigneServiceComponent } from './ligne-service/list-ligne-service/list-ligne-service.component';
+import { AddTacheComponent } from './tache/add-tache/add-tache.component';
+import { EditTacheComponent } from './tache/edit-tache/edit-tache.component';
+import { ListTacheComponent } from './tache/list-tache/list-tache.component';
+import { AddTacheUtilisateurComponent } from './tache-utilisateur/add-tache-utilisateur/add-tache-utilisateur.component';
+import { EditTacheUtilisateurComponent } from './tache-utilisateur/edit-tache-utilisateur/edit-tache-utilisateur.component';
+import { ListTacheUtilisateurComponent } from './tache-utilisateur/list-tache-utilisateur/list-tache-utilisateur.component';
 
 
   @NgModule({
@@ -56,7 +62,13 @@ import { ListLigneServiceComponent } from './ligne-service/list-ligne-service/li
     ListCarriereComponent,
     AddLigneServiceComponent,
     EditLigneServiceComponent,
-    ListLigneServiceComponent
+    ListLigneServiceComponent,
+    AddTacheComponent,
+    EditTacheComponent,
+    ListTacheComponent,
+    AddTacheUtilisateurComponent,
+    EditTacheUtilisateurComponent,
+    ListTacheUtilisateurComponent
   ],
     imports: [
       CommonModule,

@@ -19,14 +19,12 @@ export class HomeComponent {
   menu_chef:any = {
     titre:"Chef",
     items:[
-      {libelle:"Demande à traiter",path:"/home/demande"},
+      // {libelle:"Demande à traiter",path:"/home/demande"},
       {libelle:"Agent",path:"/home/utilisateur"},
-      {libelle:"Role",path:"/home/role"},
       {libelle:"service",path:"/home/service"},
       {libelle:"structure",path:"/home/structure"},
-      {libelle:"ligne_service",path:"/home/ligne_service"},
-      {libelle:"carriere",path:"/home/carriere"},
-
+      {libelle:"Affectation Tache",path:"/home/affectationTache"},
+      {libelle:"tache",path:"/home/tache"},
     ]
   }
   menu_agent:any = {
@@ -44,29 +42,48 @@ export class HomeComponent {
 
     this.user = this.api.token.user_connected
 
-    this.get_role()
     this.get_service()
     this.get_structure()
-    this.get_carriere()
+    this.get_tache()
+    this.get_tache_utilisateur()
 
     console.log(this.path)
   }
 
-  loading_get_carriere:boolean = false
-  les_carrieres:any
-  get_carriere() {
-    this.loading_get_carriere = true;
-    this.api.taf_post("carriere/get", {}, (reponse: any) => {
+  loading_get_tache_utilisateur:boolean = false
+  les_tache_utilisateurs:any
+  get_tache_utilisateur() {
+    this.loading_get_tache_utilisateur = true;
+    this.api.taf_post("tache_utilisateur/get", {}, (reponse: any) => {
       if (reponse.status) {
-        this.les_carrieres = reponse.data
-        console.log("Opération effectuée avec succés sur la table carriere. Réponse= ", reponse);
+        this.les_tache_utilisateurs = reponse.data
+        console.log("Opération effectuée avec succés sur la table tache_utilisateur. Réponse= ", reponse);
       } else {
-        console.log("L'opération sur la table carriere a échoué. Réponse= ", reponse);
+        console.log("L'opération sur la table tache_utilisateur a échoué. Réponse= ", reponse);
         alert("L'opération a echoué")
       }
-      this.loading_get_carriere = false;
+      this.loading_get_tache_utilisateur = false;
     }, (error: any) => {
-      this.loading_get_carriere = false;
+      this.loading_get_tache_utilisateur = false;
+    })
+  }
+
+
+  loading_get_tache:boolean = false
+  les_taches:any
+  get_tache() {
+    this.loading_get_tache = true;
+    this.api.taf_post("tache/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_taches = reponse.data
+        console.log("Opération effectuée avec succés sur la table tache. Réponse= ", reponse);
+      } else {
+        console.log("L'opération sur la table tache a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_tache = false;
+    }, (error: any) => {
+      this.loading_get_tache = false;
     })
   }
 
@@ -86,25 +103,6 @@ export class HomeComponent {
       this.loading_get_structure = false;
     }, (error: any) => {
       this.loading_get_structure = false;
-    })
-  }
-
-
-  loading_get_role:boolean = false
-  les_roles:any
-  get_role() {
-    this.loading_get_role = true;
-    this.api.taf_post("role/get", {}, (reponse: any) => {
-      if (reponse.status) {
-        this.les_roles = reponse.data
-        console.log("Opération effectuée avec succés sur la table role. Réponse= ", reponse);
-      } else {
-        console.log("L'opération sur la table role a échoué. Réponse= ", reponse);
-        alert("L'opération a echoué")
-      }
-      this.loading_get_role = false;
-    }, (error: any) => {
-      this.loading_get_role = false;
     })
   }
 

@@ -44,7 +44,7 @@
      <div class="form-group col-sm-6">
        <label>statut</label>
        <!-- <input class="form-control" type="text" formControlName="statut" placeholder="statut" [ngClass]="{ 'is-invalid': submitted && f.statut.errors }" /> -->
-       <select class="form-control" formControlName="statut" [ngClass]="{ 'is-invalid': submitted && f.statut.errors }">
+       <select class="form-control" formControlName="statut" [ngClass]="{ 'is-invalid': submitted && f.statut.errors }" [(ngModel)]="statut">
          <option value="agent">Agent</option>
          <option value="agent">chef</option>
         </select>
@@ -56,8 +56,7 @@
 
       <div class="form-group col-sm-6">
         <label>structure</label>
-    <select [ngClass]="{ 'is-invalid': submitted && f.id_structure.errors }" class="form-select"
-    formControlName="id_structure">
+    <select [ngClass]="{ 'is-invalid': submitted && f.id_structure.errors }" class="form-select" formControlName="id_structure" [(ngModel)]="structure">
     <option value="">Sélectionnez un(e) structure</option>
     <option [value]="one_structure.id_structure" *ngFor="let one_structure of form_details.les_structures">
         {{one_structure.nom}}</option>
@@ -79,25 +78,38 @@
   </div> -->
   <!-- champs id_service avec un control de validite : clé étrangère liée à la colonne id_service de la table service -->
 }
-  <div class="form-group col-sm-12">
-    <label>service</label>
-    <select [ngClass]="{ 'is-invalid': submitted && f.id_service.errors }" class="form-select"
-    formControlName="id_service">
-    <option value="">Sélectionnez un(e) service</option>
-    @for (structure of les_structures; track $index) {
-      @if (user.id_structure == structure.id_structure) {
+@for (one_structure of les_structures; track $index) {
+  @if (structure == one_structure.id_structure ) {
+    <div class="form-group col-sm-12">
+      <label>service</label>
+      <select [ngClass]="{ 'is-invalid': submitted && f.id_service.errors }" class="form-select" formControlName="id_service" [(ngModel)]="service">
+      <option value="">Sélectionnez un(e) service</option>
+      @if (user.statut == 'chef' && user.id_structure == one_structure.id_structure) {
         <option [value]="one_service.id_service" *ngFor="let one_service of form_details.les_services">
           @if ( user.statut == 'chef' && user.id_structure == one_service.id_structure) {
             {{one_service.nom}}
           }
         </option>
+      }@else if (user.statut == 'admin') {
+      @for (one_service of form_details.les_services; track $index) {
+        @if ( structure == one_service.id_structure) {
+        <option [value]="one_service.id_service">
+            {{one_service.nom}}
+          </option>
+        }
       }
-    }
-  </select>
-  <!-- <div *ngIf="submitted && f.id_service.errors" class="invalid-feedback">
-    <div *ngIf="f.id_service.errors.required">ce champ est obligatoire</div>
-  </div> -->
-</div>
+      }
+    </select>
+    <!-- <div *ngIf="submitted && f.id_service.errors" class="invalid-feedback">
+      <div *ngIf="f.id_service.errors.required">ce champ est obligatoire</div>
+    </div> -->
+  </div>
+}
+}
+@if (service != undefined) {
+  <app-add-tache-utilisateur (cb_add_tache_utilisateur)="after_add($event)" [agent]="les_utilisateurs.length" [service]="service"></app-add-tache-utilisateur>
+
+}
 </form>
 <!-- vous pouvez valider votre formulaire n\'importe ou -->
 
@@ -105,4 +117,49 @@
   <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_utilisateur "
     (click)="form_add_utilisateur .ngSubmit.emit()">{{loading_add_utilisateur ?"En cours ...":"Valider"}}</button>
   <button class="btn btn-secondary m-2" type="reset" (click)="onReset_add_utilisateur ()">Vider</button>
+</div>
+
+<!-- ajout -->
+<div class="modal fade" id="modal_add_tache_utilisateur" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header " >
+              <h1 class="modal-title fs-5">Ajouter TacheUtilisateur</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <app-add-tache-utilisateur (cb_add_tache_utilisateur)="after_add($event)"></app-add-tache-utilisateur>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- ajout tache-->
+<div class="modal fade" id="modal_add_tache" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header " >
+              <h1 class="modal-title fs-5">Ajouter Tache</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <app-add-tache (cb_add_tache)="after_add($event)"></app-add-tache>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- octroyer tache utilisateur-->
+<div class="modal fade" id="modal_add_tache_utilisateur" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header " >
+              <h1 class="modal-title fs-5">Ajouter TacheUtilisateur</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <app-add-tache-utilisateur (cb_add_tache_utilisateur)="after_add($event)"></app-add-tache-utilisateur>
+          </div>
+      </div>
+  </div>
 </div>

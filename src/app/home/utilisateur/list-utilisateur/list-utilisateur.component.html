@@ -2,52 +2,52 @@
 <div class="d-flex align-items-center justify-content-between p-2">
   <div class="fs-1" *ngIf="user.statut == 'chef'">
     @for (structure of les_structures; track $index) {
-      @if (structure.id_structure == user.id_structure) {
-        Les Agents de la {{structure.nom}}      }
+    @if (structure.id_structure == user.id_structure) {
+    Les Agents de la {{structure.nom}} }
     }
-    </div>
-  <div class="d-flex">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_utilisateur">Ajouter Utilisateur</button>
   </div>
-</div>
+  <div class="d-flex">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_utilisateur"
+      *ngIf="user.statut == 'admin'">Ajouter Utilisateur</button>
+    </div>
+  </div>
+  <!-- <app-add-tache-utilisateur></app-add-tache-utilisateur> -->
 <!-- list -->
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
-        <!-- <th scope="col">id_utilisateur</th> -->
-<th scope="col">nom</th>
-<th scope="col">prenom</th>
-<th scope="col">email</th>
-@if (user.statut == 'chef') {
-  <th scope="col">service</th>
-}@else {
-  <th scope="col">structure</th>
-}
-<!-- <th scope="col">statut</th> -->
-<!-- <th scope="col">actions</th> -->
+        <th scope="col">nom</th>
+        <th scope="col">prenom</th>
+        <th scope="col">email</th>
+        @if (user.statut == 'chef') {
+        <th scope="col">service</th>
+        }@else {
+        <th scope="col">structure</th>
+        }
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_utilisateur of les_utilisateurs">
         @if (user.statut == 'chef') {
-          @for (one_service of les_services; track $index) {
-            @if (user.id_structure == one_utilisateur.id_structure && one_utilisateur.id_service == one_service.id_service) {
-              <!-- <td>{{one_utilisateur.id_utilisateur}}</td> -->
-              <td>{{one_utilisateur.nom}}</td>
-              <td>{{one_utilisateur.prenom}}</td>
-              <td>{{one_utilisateur.email}}</td>
-              @if (one_utilisateur.id_service == one_service.id_service) {
-                <td>{{one_service.nom}}</td>
-              }
-              <!-- <td>{{one_utilisateur.statut}}</td> -->
-              <td>
-                <button class="btn btn-warning"><a (click)="on_click_edit(one_utilisateur)" class="dropdown-item" data-bs-toggle="modal"
-                  data-bs-target="#modal_edit_utilisateur">
-                  <i class="bx bx-edit-alt me-1"></i>
-                  Modifier
-                </a> </button>
-                <!-- <div class="dropdown">
+        @for (one_service of les_services; track $index) {
+        @if (user.id_structure == one_utilisateur.id_structure && one_utilisateur.id_service == one_service.id_service
+        && one_utilisateur.statut == 'agent') {
+        <!-- <td>{{one_utilisateur.id_utilisateur}}</td> -->
+        <td>{{one_utilisateur.nom}}</td>
+        <td>{{one_utilisateur.prenom}}</td>
+        <td>{{one_utilisateur.email}}</td>
+        @if (one_utilisateur.id_service == one_service.id_service) {
+        <td>{{one_service.nom}}</td>
+        }
+        <!-- <td>{{one_utilisateur.statut}}</td> -->
+        <td >
+          <button class="btn btn-warning"><a (click)="on_click_edit(one_utilisateur)" class="dropdown-item"
+              data-bs-toggle="modal" data-bs-target="#modal_edit_utilisateur">
+              <i class="bx bx-edit-alt me-1"></i>
+              Changer service
+            </a> </button>
+          <!-- <div class="dropdown">
                   <button [disabled]="loading_delete_utilisateur" type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">{{loading_delete_utilisateur?"en cours ...":"actions"}}</button>
                   <div class="dropdown-menu">
                     <a (click)="on_click_edit(one_utilisateur)" class="dropdown-item" data-bs-toggle="modal"
@@ -58,27 +58,27 @@
                     <a class="dropdown-item" href="javascript:void(0);" (click)=delete_utilisateur({id_utilisateur:one_utilisateur.id_utilisateur})><i class="bx bx-trash me-1"></i>Supprimer</a>
                   </div>
                 </div> -->
-              </td>
-            }
-          }
+        </td>
+        }
+        }
         }@else {
-          <!-- <td>{{one_utilisateur.id_utilisateur}}</td> -->
-          <td>{{one_utilisateur.nom}}</td>
-          <td>{{one_utilisateur.prenom}}</td>
-          <td>{{one_utilisateur.email}}</td>
-          @for (structure of les_structures; track $index) {
-            @if (structure.id_structure == one_utilisateur.id_structure) {
-              <td>{{structure.nom}}</td>
-            }
-          }
-          <!-- <td>{{one_utilisateur.statut}}</td> -->
-          <td>
-            <button class="btn btn-warning"><a (click)="on_click_edit(one_utilisateur)" class="dropdown-item" data-bs-toggle="modal"
-              data-bs-target="#modal_edit_utilisateur">
+        <!-- <td>{{one_utilisateur.id_utilisateur}}</td> -->
+        <td>{{one_utilisateur.nom}}</td>
+        <td>{{one_utilisateur.prenom}}</td>
+        <td>{{one_utilisateur.email}}</td>
+        @for (structure of les_structures; track $index) {
+        @if (structure.id_structure == one_utilisateur.id_structure) {
+        <td>{{structure.nom}}</td>
+        }
+        }
+        <!-- <td>{{one_utilisateur.statut}}</td> -->
+        <td>
+          <button class="btn btn-warning"><a (click)="on_click_edit(one_utilisateur)" class="dropdown-item"
+              data-bs-toggle="modal" data-bs-target="#modal_edit_utilisateur">
               <i class="bx bx-edit-alt me-1"></i>
               Modifier
             </a> </button>
-            <!-- <div class="dropdown">
+          <!-- <div class="dropdown">
               <button [disabled]="loading_delete_utilisateur" type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">{{loading_delete_utilisateur?"en cours ...":"actions"}}</button>
               <div class="dropdown-menu">
                 <a (click)="on_click_edit(one_utilisateur)" class="dropdown-item" data-bs-toggle="modal"
@@ -89,38 +89,47 @@
                 <a class="dropdown-item" href="javascript:void(0);" (click)=delete_utilisateur({id_utilisateur:one_utilisateur.id_utilisateur})><i class="bx bx-trash me-1"></i>Supprimer</a>
               </div>
             </div> -->
-          </td>
+        </td>
         }
-
-
       </tr>
     </tbody>
   </table>
 </div>
+<div class="card">
+  <div class="card-header">
+    <h1>Tache</h1>
+  </div>
+  <div class="card-body">
+    <app-add-tache-utilisateur (cb_add_tache_utilisateur)="after_add($event)"></app-add-tache-utilisateur>
+  </div>
+
+</div>
 <!-- ajout -->
 <div class="modal fade" id="modal_add_utilisateur" data-bs-backdrop="static">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-          <div class="modal-header " >
-              <h1 class="modal-title fs-5">Ajouter Utilisateur</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <app-add-utilisateur (cb_add_utilisateur)="after_add($event)"></app-add-utilisateur>
-          </div>
+    <div class="modal-content">
+      <div class="modal-header ">
+        <h1 class="modal-title fs-5">Ajouter Utilisateur</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body">
+        <app-add-utilisateur (cb_add_utilisateur)="after_add($event)"></app-add-utilisateur>
+      </div>
+    </div>
   </div>
 </div>
 <!-- modification -->
 <div class="modal fade" id="modal_edit_utilisateur" data-bs-backdrop="static">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
-      <div class="modal-header" >
+      <div class="modal-header">
         <h1 class="modal-title fs-5">Modifier Utilisateur</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="on_close_modal_edit()"></button>
       </div>
       <div class="modal-body">
-        <app-edit-utilisateur *ngIf="utilisateur_to_edit" (cb_edit_utilisateur)="after_edit($event)" [utilisateur_to_edit]="utilisateur_to_edit"></app-edit-utilisateur>
+        <app-edit-utilisateur *ngIf="utilisateur_to_edit" (cb_edit_utilisateur)="after_edit($event)"
+          [utilisateur_to_edit]="utilisateur_to_edit"></app-edit-utilisateur>
       </div>
     </div>
   </div>

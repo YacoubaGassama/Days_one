@@ -1,8 +1,10 @@
 <!-- entete -->
+ <h4 class="text text-center m-2">Effectuer une demande</h4>
+<app-add-demande (cb_add_demande)="after_add($event)"></app-add-demande>
 <div class="d-flex align-items-center justify-content-between">
   <div class="fs-1">Les Demandes  - {{les_demandes.length}}</div>
   <div class="d-flex p-2">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_demande">Ajouter Demande</button>
+    <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_demande">Ajouter Demande</button> -->
   </div>
 </div>
 <!-- list -->

@@ -3,94 +3,23 @@
     Module home
   </div> -->
   <div class="d-flex">
-    <!-- <div class="dropdown">
-      <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-      data-bs-toggle="dropdown">{{menu.titre}}</button>
-      <div class="dropdown-menu">
-        <a routerLinkActive="bg-primary text-white"  *ngFor="let one_menu of menu.items" [routerLink]="[one_menu.path]" class="dropdown-item" >
-          {{one_menu.libelle}}
-        </a>
-      </div>
-    </div>
-  </div> -->
     <div id="" class="menu">
-      <!-- <img src="../../../assets/image/images.jpeg" class="img" alt=""> -->
-      <!-- <div class="sidebar">
-        <div class="sidebar-header">
-            <h3 class="text-success">Mon Application</h3>
-        </div>
-        <ul class="sidebar-menu">
-            <li class="sidebar-item"><a href="#">Accueil</a></li>
-            <li class="sidebar-item">
-                <a href="#">Services</a>
-                <ul>
-                  @for (menu of menu_chef.items; track $index) {
 
-                  <li class="nav-item" routerLinkActive="bg-success text-white" [routerLink]="[menu.path]"><a class="nav-llink"
-                      routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
-                      <i class={{menu.icon}}></i>
-                      {{menu.libelle}}
-                    </a></li>
-                  }
-                </ul>
-            </li>
-            <li class="sidebar-item"><a href="#">À propos</a></li>
-            <li class="sidebar-item"><a href="#">Contact</a></li>
-        </ul>
-    </div> -->
       @if (user.statut == 'admin') {
       <div class="sidebar">
         <div class="sidebar-header">
-          <i class="bi bi-person-circle icon-extra-large"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+          <i class="bi bi-person-circle icon-extra-large" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
           <h3>{{user.nom}}</h3>
-          @for (role of les_roles; track $index) {
-            @if (user.id_utilisateur == role.id_utilisateur) {
-              @for (service of les_services; track $index) {
-                @if (role.id_service == service.id_service) {
-                  <h4>{{service.nom}}</h4>
-                }
-              }
-            }
-          }
+
         </div>
         <ul class="sidebar-menu">
           @for (menu of menu_chef.items; track $index) {
-          <!-- @if (menu.libelle == 'service') {
 
-          <li class="sidebar-item" routerLinkActive="bg-success text-white" (click)="toggleDropdown($event)">
-            <a class="nav-llink "
-                   id="link" [routerLink]="[menu.path]">
-                   <h5 class="d-flex align-items-start justify-content-around">{{menu.libelle}}
-                    @if (isDropdownOpen) {
-                      <i class="bi bi-chevron-up"></i>
-                    }@else {
-                      <i class="bi bi-chevron-down"></i>
-                    }
-                    </h5>
-                </a>
-            <ul class="sidebar-dropdown" [class.active]="isDropdownOpen">
-              @for (one_service of les_services; track $index) {
-              <li class="sidebar-dropdown-item" routerLinkActive="bg-success text-white"
-                [routerLink]="['/home/'+path[$index]]" (click)="toggleDropdown($event)">
-                <a [routerLink]="['/home/'+path[$index]]" routerLinkActive="bg-success text-white">
-                  {{one_service.nom}}
-                </a>
-              </li>
-              }
-            </ul>
-          </li>
-          }@else {
           <li class="nav-item" routerLinkActive="bg-success text-white" [routerLink]="[menu.path]"><a class="nav-llink"
               routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
               <i class={{menu.icon}}></i>
               {{menu.libelle}}
             </a></li>
-          } -->
-          <li class="nav-item" routerLinkActive="bg-success text-white" [routerLink]="[menu.path]"><a class="nav-llink"
-            routerLinkActive="bg-success text-white" id="link" [routerLink]="[menu.path]">
-            <i class={{menu.icon}}></i>
-            {{menu.libelle}}
-          </a></li>
           }
         </ul>
       </div>
@@ -99,42 +28,46 @@
         <div class="sidebar-header">
           <i class="bi bi-person-circle icon-extra-large" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
           <h3>{{user.nom}}</h3>
-          @for (role of les_roles; track $index) {
-            @for (service of les_services; track $index) {
-                @if (user.id_service == service.id_service) {
-                  <h4>{{service.nom}}</h4>
-              }
-            }
-          }
+
         </div>
 
-        <ul class="sidebar-menu">
+        <!-- <ul class="sidebar-menu">
           <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/profil']">
             <a class="nav-llink" id="link">Profil</a>
           </li>
           <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/demande']">
-            <a class="nav-llink" id="link"> Demande</a>
+            <a class="nav-llink" id="link"> Congés</a>
           </li>
           <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/salaire']">
             <a class="nav-llink" id="link"> Salaire</a>
           </li>
-        </ul>
-
+        </ul> -->
         <ul class="sidebar-menu">
-          @for (one_service of les_services; track $index) {
-
-          @if (user.id_service == one_service.id_service) {
-
-          <!-- <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/'+path[$index]]">
-            <a [routerLink]="['/home/'+path[$index]]">
-              {{one_service.nom}}
-            </a>
-          </li> -->
+          @for (tache of les_taches; track $index) {
+            @if (tache.type == 'par défaut' ) {
+            @for (one_service of les_services; track $index) {
+            @if (tache.id_service == one_service.id_service) {
             <h5><STROng>{{one_service.nom}}</STROng></h5>
-            <li *ngIf="user.statut == 'agent'">Ajouter</li>
-            <li *ngIf="user.statut == 'chef'">Modifier</li>
-            <li>Lister</li>
+            <li><a href={{tache.lien}}>{{tache.nom}}</a></li>
+            }
+            }
+            }
+            }
+          @for (one_service of les_services; track $index) {
+          @if (user.id_service == one_service.id_service) {
+          <h5><STROng>{{one_service.nom}}</STROng></h5>
+          @for (tache of les_taches; track $index) {
+          @if (tache.id_service == user.id_service) {
+          @for (tache_utilisateur of les_tache_utilisateurs; track $index) {
+          @if (user.id_utilisateur == tache_utilisateur.id_utilisateur && tache_utilisateur.id_tache == tache.id_tache)
+          {
+          <li><a href={{tache.lien}}>{{tache.nom}}</a></li>
           }
+          }
+          }
+          }
+          }
+
           }
 
 
@@ -142,50 +75,47 @@
 
       </div>
       }@else if (user.statut == 'chef') {
-        <div class="sidebar">
-          <div class="sidebar-header">
-            <i class="bi bi-person-circle icon-extra-large" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-            <h3>{{user.nom}}</h3>
-            @for (role of les_roles; track $index) {
-              @for (service of les_services; track $index) {
-                  @if (user.id_service == service.id_service) {
-                    <h4>{{service.nom}}</h4>
-                }
-              }
-            }
-          </div>
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <i class="bi bi-person-circle icon-extra-large" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+          <h3>{{user.nom}}</h3>
 
-          <ul class="sidebar-menu">
-            <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/profil']">
-              <a class="nav-llink" id="link">Profil</a>
-            </li>
-            <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/demande']">
-              <a class="nav-llink" id="link"> Demande</a>
-            </li>
-            <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/salaire']">
-              <a class="nav-llink" id="link"> Salaire</a>
-            </li>
-            <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/utilisateur']">
-              <a class="nav-llink" id="link"> Agent</a>
-            </li>
-          </ul>
-
-          <ul>
-            @for (structure of les_structures; track $index) {
-              @if (user.id_structure == structure.id_structure) {
-                @for (one_service of les_services; track $index) {
-                  @if (one_service.id_structure == structure.id_structure) {
-                    <h5><strong>{{one_service.nom}}</strong></h5>
-                    <!-- <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/'+path[$index]]"></li> -->
-                    <li>Ajouter</li>
-                    <li>Modifier</li>
-                    <li>Lister</li>
-                  }
-                }
-            }
-            }
-          </ul>
         </div>
+
+        <ul class="sidebar-menu">
+          <li class="sidebar-item" routerLinkActive="bg-success text-white" [routerLink]="['/home/utilisateur']">
+            <a class="nav-llink" id="link">Agent</a>
+          </li>
+        </ul>
+        <ul>
+          <!-- <h5><STROng>{{one_service.nom}}</STROng></h5>
+            <li><a href={{tache.lien}}>{{tache.nom}}</a></li> -->
+          @for (tache of les_taches; track $index) {
+          @for (one_service of les_services; track $index) {
+          @if (tache.type == 'par défaut' ) {
+          @if (tache.id_service == one_service.id_service) {
+          <h5><STROng>{{one_service.nom}}</STROng></h5>
+          <li><a href={{tache.lien}}>{{tache.nom}}</a></li>
+          }
+          }
+          }
+          }
+          @for (one_structure of les_structures; track $index) {
+          @if (user.id_structure == one_structure.id_structure) {
+          @for (one_service of les_services; track $index) {
+          @if (user.id_structure == one_service.id_structure) {
+          <h5><STROng>{{one_service.nom}}</STROng></h5>
+          @for (tache of les_taches; track $index) {
+          @if (tache.id_service == one_service.id_service) {
+          <li><a href={{tache.lien}}>{{tache.nom}}</a></li>
+          }
+          }
+          }
+          }
+          }
+          }
+        </ul>
+      </div>
       }
     </div>
     <div class="container" id="container">
@@ -198,19 +128,13 @@
         <div class="modal-content align-items-center justify-content-center">
 
           <i class="bi bi-person-circle icon-extra-large"></i>
-          <h3>{{user.nom+"  "+user.prenom}}</h3>
+          <h3>{{user.nom+" "+user.prenom}}</h3>
           <h6><strong>Email : </strong>{{user.email}}</h6>
           <span><strong>Statut : </strong>{{user.statut}}</span>
-              @for (service of les_services; track $index) {
-                @if (service.id_service == user.id_service) {
-                  <span><strong>Post :</strong> {{service.nom}}</span>
-                }
-              }
-          @for (carriere of les_carrieres; track $index) {
-            @if (user.id_carriere == carriere.id_carriere) {
-              <span><strong>Carrière : </strong>{{carriere.niveau}}</span>
-
-            }
+          @for (service of les_services; track $index) {
+          @if (service.id_service == user.id_service) {
+          <span><strong>Post :</strong> {{service.nom}}</span>
+          }
           }
           <div id="deconnexion" class="d-flex align-content-center justify-content-end">
             <a routerLinkActive="bg-primary text-white" (click)="deconnexion()" data-bs-dismiss="modal"

@@ -1,0 +1,70 @@
+<!-- entete -->
+<div class="d-flex align-items-center justify-content-between">
+  <div class="fs-1">Les Taches  - {{les_taches.length}}</div>
+  <div class="d-flex">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_tache">Ajouter Tache</button>
+  </div>
+</div>
+<!-- list -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id_tache</th>
+<th scope="col">nom</th>
+<th scope="col">lien</th>
+<th scope="col">type</th>
+<th scope="col">id_service</th><th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let one_tache of les_taches">
+        <td>{{one_tache.id_tache}}</td>
+<td>{{one_tache.nom}}</td>
+<td>{{one_tache.lien}}</td>
+<td>{{one_tache.type}}</td>
+<td>{{one_tache.id_service}}</td><td>
+  <div class="dropdown">
+    <button [disabled]="loading_delete_tache" type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">{{loading_delete_tache?"en cours ...":"actions"}}</button>
+    <div class="dropdown-menu">
+      <a (click)="on_click_edit(one_tache)" class="dropdown-item" data-bs-toggle="modal"
+        data-bs-target="#modal_edit_tache">
+        <i class="bx bx-edit-alt me-1"></i>
+        Modifier
+      </a>
+      <a class="dropdown-item" href="javascript:void(0);" (click)=delete_tache({id_tache:one_tache.id_tache})><i class="bx bx-trash me-1"></i>Supprimer</a>
+    </div>
+  </div>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- ajout -->
+<div class="modal fade" id="modal_add_tache" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header " >
+              <h1 class="modal-title fs-5">Ajouter Tache</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <app-add-tache (cb_add_tache)="after_add($event)"></app-add-tache>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- modification -->
+<div class="modal fade" id="modal_edit_tache" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <h1 class="modal-title fs-5">Modifier Tache</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
+      </div>
+      <div class="modal-body">
+        <app-edit-tache *ngIf="tache_to_edit" (cb_edit_tache)="after_edit($event)" [tache_to_edit]="tache_to_edit"></app-edit-tache>
+      </div>
+    </div>
+  </div>
+</div>

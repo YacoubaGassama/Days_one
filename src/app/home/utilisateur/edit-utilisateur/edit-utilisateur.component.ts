@@ -32,7 +32,9 @@ export class EditUtilisateurComponent {
           nom : [utilisateur_to_edit.nom, Validators.required],
 prenom : [utilisateur_to_edit.prenom, Validators.required],
 email : [utilisateur_to_edit.email, Validators.required],
-statut : [utilisateur_to_edit.statut, Validators.required]
+statut : [utilisateur_to_edit.statut, Validators.required],
+id_structure : [utilisateur_to_edit.id_structure, Validators.required],
+id_service : [utilisateur_to_edit.id_service, Validators.required],
       });
   }
 

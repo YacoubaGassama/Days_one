@@ -15,9 +15,12 @@ import { ListPrivilegeComponent } from './privilege/list-privilege/list-privileg
 import { ListLigneServiceComponent } from './ligne-service/list-ligne-service/list-ligne-service.component';
 import { ProfilComponent } from '../profil/profil.component';
 import { ListCarriereComponent } from './carriere/list-carriere/list-carriere.component';
+import { AddDemandeComponent } from './demande/add-demande/add-demande.component';
+import { ListTacheComponent } from './tache/list-tache/list-tache.component';
+import { ListTacheUtilisateurComponent } from './tache-utilisateur/list-tache-utilisateur/list-tache-utilisateur.component';
 
 const routes: Routes = [
-  {path:"",component:ListDemandeComponent},
+  // {path:"",component:ListUtilisateurComponent},
 {path:"demande",component:ListDemandeComponent},
 {path:"edit",component:EditDemandeComponent},
 {path:"utilisateur",component:ListUtilisateurComponent},
@@ -32,7 +35,10 @@ const routes: Routes = [
 {path:"privilege",component:ListPrivilegeComponent},
 {path:"ligne_service",component:ListLigneServiceComponent},
 {path:"profil",component:ProfilComponent},
-{path:"carriere",component:ListCarriereComponent}
+{path:"carriere",component:ListCarriereComponent},
+{path:"EffectuerDemande",component:AddDemandeComponent},
+{path:"tache",component:ListTacheComponent},
+{path:"affectationTache",component:ListTacheUtilisateurComponent}
 ];
 
 @NgModule({

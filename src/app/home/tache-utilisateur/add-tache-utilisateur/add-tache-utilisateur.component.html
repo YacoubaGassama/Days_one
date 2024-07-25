@@ -1,0 +1,80 @@
+
+<form  [formGroup]="reactiveForm_add_tache_utilisateur " (ngSubmit)="onSubmit_add_tache_utilisateur ()" #form_add_tache_utilisateur ="ngForm" class="row">
+
+<!-- champs id_utilisateur avec un control de validite : clé étrangère liée à la colonne id_utilisateur de la table utilisateur -->
+        <div class="form-group col-sm-6" *ngIf="agent == undefined">
+          <label >Agent</label>
+          <select [ngClass]="{ 'is-invalid': submitted && f.id_utilisateur.errors }" class="form-select" formControlName="id_utilisateur" [(ngModel)]="selected_agent">
+            <option value="">Sélectionnez un(e) utilisateur</option>
+            @for (one_utilisateur of form_details.les_utilisateurs; track $index) {
+              @if (user.statut == 'chef' && one_utilisateur.id_structure == user.id_structure && one_utilisateur.statut == 'agent') {
+                <option [value]="one_utilisateur.id_utilisateur">
+                  {{one_utilisateur.nom}}
+                </option>
+              }@else if(user.statut == 'admin'){
+                <option [value]="one_utilisateur.id_utilisateur">
+                  {{one_utilisateur.nom}}
+                </option>
+            }
+          }
+          </select>
+          <div *ngIf="submitted && f.id_utilisateur.errors" class="invalid-feedback">
+            <div *ngIf="f.id_utilisateur.errors.required">ce champ est obligatoire</div>
+          </div>
+        </div>
+<!-- champs id_tache avec un control de validite : clé étrangère liée à la colonne id_tache de la table tache -->
+ @if (service == undefined) {
+  @for (utilisateur of les_utilisateurs; track $index) {
+    @if (selected_agent == utilisateur.id_utilisateur) {
+      <div class="form-group col-sm-6">
+        <label >tache</label>
+        <select [ngClass]="{ 'is-invalid': submitted && f.id_tache.errors }" class="form-select" formControlName="id_tache">
+          <option value="">Sélectionnez un(e) tache</option>
+
+             @for (one_tache of form_details.les_taches; track $index) {
+               @if (one_tache.id_service == utilisateur.id_service) {
+                 <option [value]="one_tache.id_tache">
+                   {{one_tache.nom}}
+                 </option>
+
+           }
+          }
+         </select>
+         <div *ngIf="submitted && f.id_tache.errors" class="invalid-feedback">
+           <div *ngIf="f.id_tache.errors.required">ce champ est obligatoire</div>
+         </div>
+       </div>
+    }
+  }
+  }@else {
+    <div class="form-group col-sm-6">
+      <label >tache</label>
+      <select [ngClass]="{ 'is-invalid': submitted && f.id_tache.errors }" class="form-select" formControlName="id_tache">
+        <option value="">Sélectionnez un(e) tache</option>
+        @for (one_tache of form_details.les_taches; track $index) {
+          @if (service == one_tache.id_service) {
+            <option [value]="one_tache.id_tache">
+              {{one_tache.nom}}
+            </option>
+          }
+        }
+       </select>
+       <div *ngIf="submitted && f.id_tache.errors" class="invalid-feedback">
+         <div *ngIf="f.id_tache.errors.required">ce champ est obligatoire</div>
+       </div>
+     </div>
+  }
+</form>
+<!-- vous pouvez valider votre formulaire n'importe ou -->
+<!-- <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"  [disabled]="loading_add_tache_utilisateur "
+  (click)="form_add_tache_utilisateur .ngSubmit.emit()">
+  <label class="form-check-label" for="defaultCheck1">
+    valider tache
+  </label>
+</div> -->
+<div class="text-center m-2">
+    <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_tache_utilisateur "
+        (click)="form_add_tache_utilisateur .ngSubmit.emit()">{{loading_add_tache_utilisateur ?"En cours ...":"Valider "}}</button>
+    <button class="btn btn-secondary m-2" type="reset" (click)="onReset_add_tache_utilisateur ()">Vider</button>
+</div>

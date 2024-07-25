@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api/api.service';
 import { Md5 } from 'ts-md5';
+import { BlobOptions } from 'node:buffer';
 
 
 @Component({
@@ -11,6 +12,9 @@ import { Md5 } from 'ts-md5';
   styleUrls: ['./add-utilisateur.component.css']
 })
 export class AddUtilisateurComponent {
+  after_add($event: any) {
+    throw new Error('Method not implemented.');
+  }
   @Output()
   cb_add_utilisateur = new EventEmitter()
   reactiveForm_add_utilisateur !: FormGroup;
@@ -18,43 +22,48 @@ export class AddUtilisateurComponent {
   loading_add_utilisateur: boolean = false
   form_details: any = {}
   loading_get_details_add_utilisateur_form = false
-currentItem: any;
-user:any
+  currentItem: any;
+  statut!: string
+  structure!: string
+  service!: number
+tache!: string
+  user: any
   constructor(private formBuilder: FormBuilder, public api: ApiService) {
 
     this.user = this.api.token.user_connected
-   }
+  }
 
   ngOnInit(): void {
     this.get_details_add_utilisateur_form()
     this.init_form()
     this.get_structure()
+    this.get_utilisateur()
   }
   init_form() {
-    if(this.user.statut == 'chef'){
+    if (this.user.statut == 'chef') {
 
       this.reactiveForm_add_utilisateur = this.formBuilder.group({
         nom: ["", Validators.required],
-      prenom: ["", Validators.required],
-      email: ["", Validators.required],
-      statut: ["agent", Validators.required],
-      password: ["", Validators.required],
-      id_structure: [this.user.structure, Validators.required],
-      id_carriere: [1, Validators.required],
-      id_service: [""]
-    });
-  }else{
-    this.reactiveForm_add_utilisateur = this.formBuilder.group({
-      nom: ["", Validators.required],
-    prenom: ["", Validators.required],
-    email: ["", Validators.required],
-    statut: ["", Validators.required],
-    password: ["", Validators.required],
-    id_structure: ["", Validators.required],
-    id_carriere: [1, Validators.required],
-    id_service: [""]
-  });
-  }
+        prenom: ["", Validators.required],
+        email: ["", Validators.required],
+        statut: ["agent", Validators.required],
+        password: ["", Validators.required],
+        id_structure: [this.user.structure, Validators.required],
+        id_carriere: [1, Validators.required],
+        id_service: [""]
+      });
+    } else {
+      this.reactiveForm_add_utilisateur = this.formBuilder.group({
+        nom: ["", Validators.required],
+        prenom: ["", Validators.required],
+        email: ["", Validators.required],
+        statut: ["", Validators.required],
+        password: ["", Validators.required],
+        id_structure: ["", Validators.required],
+        id_carriere: [1, Validators.required],
+        id_service: [""]
+      });
+    }
   }
 
   // acces facile au champs de votre formulaire
@@ -109,8 +118,8 @@ user:any
   }
 
 
-  loading_get_structure:boolean = false
-  les_structures:any
+  loading_get_structure: boolean = false
+  les_structures: any
   get_structure() {
     this.loading_get_structure = true;
     this.api.taf_post("structure/get", {}, (reponse: any) => {
@@ -124,6 +133,25 @@ user:any
       this.loading_get_structure = false;
     }, (error: any) => {
       this.loading_get_structure = false;
+    })
+  }
+
+
+  loading_get_utilisateur:Boolean = false
+  les_utilisateurs:any
+  get_utilisateur() {
+    this.loading_get_utilisateur = true;
+    this.api.taf_post("utilisateur/get", {}, (reponse: any) => {
+      if (reponse.status) {
+        this.les_utilisateurs = reponse.data
+        console.log("Opération effectuée avec succés sur la table utilisateur. Réponse= ", reponse);
+      } else {
+        console.log("L'opération sur la table utilisateur a échoué. Réponse= ", reponse);
+        alert("L'opération a echoué")
+      }
+      this.loading_get_utilisateur = false;
+    }, (error: any) => {
+      this.loading_get_utilisateur = false;
     })
   }
 }
